@@ -1,0 +1,11 @@
+.notification-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999999;
+  width: 300px;
+  padding: 0 15px;
+  max-height: calc(100% - 2rem);
+  overflow-x: hidden;
+  overflow-y: auto;
+}

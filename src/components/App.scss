@@ -1,0 +1,31 @@
+@import "src/styles/mixins";
+
+.container {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "footer";
+  grid-template-rows: var(--header-height) min-content 1fr var(--footer-height);
+  background-color: var(--bg-primary);
+
+  min-height: 100vh;
+  min-width: 300px;
+}
+
+@include tablets {
+  .container {
+    grid-template-areas:
+      "header main"
+      "nav main"
+      "nav footer";
+    grid-template-columns: var(--nav-width) 1fr;
+    grid-template-rows: var(--header-height) 1fr var(--footer-height);
+  }
+}
+
+@include screen_small {
+  .container {
+  }
+}

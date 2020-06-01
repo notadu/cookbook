@@ -1,0 +1,17 @@
+.notification {
+  background-color: var(--bg-primary);
+  border-radius: 2px;
+  box-shadow: 0 0 12px #999;
+  font-size: 1em;
+  margin: 1rem 0;
+  padding: 40px 40px 30px 30px;
+  position: relative;
+}
+
+.notification_button {
+  font-size: 2rem;
+  line-height: 1;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}

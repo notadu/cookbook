@@ -1,0 +1,25 @@
+@import "./mixins";
+
+:root {
+  --color-primary: #5c5c5c;
+  --color-title-primary: #2c2d2f;
+  --color-title-secondary: #ffffff;
+
+  --color-link-primary: #8297b3;
+  --color-link-primary--hover: #2863ec;
+
+  --bg-primary: #f5f6f8;
+  --bg-secondary: #ffffff;
+
+  --bg-label: #8297b3;
+
+  --nav-width: 270px;
+  --header-height: 70px;
+  --footer-height: 70px;
+}
+
+@include tablets {
+  :root {
+    --header-height: 120px;
+  }
+}

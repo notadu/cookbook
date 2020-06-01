@@ -10,16 +10,26 @@
     "@types/node": "^12.12.42",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "axios": "^0.19.2",
+    "classnames": "^2.2.6",
+    "dompurify": "^2.0.11",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+    "react-transition-group": "^4.4.1",
+    "typescript": "^3.7.5",
+    "uuid": "^8.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pretty-quick": "pretty-quick --staged"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +45,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.10",
+    "@types/dompurify": "^2.0.2",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/react-transition-group": "^4.4.0",
+    "@types/uuid": "^8.0.0",
+    "postcss-normalize": "^9.0.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1"
+  },
+  "pre-commit": [
+    "pretty-quick"
+  ]
 }

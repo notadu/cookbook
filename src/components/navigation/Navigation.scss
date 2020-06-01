@@ -1,0 +1,45 @@
+@import "src/styles/mixins";
+
+.cook-nav {
+  grid-area: nav;
+  height: 0;
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+  transition: height 0.5s ease;
+
+  &.cook-nav__opened {
+    height: 150px;
+  }
+}
+
+.navigation-list {
+  padding-left: 10px;
+}
+
+.navigation-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+
+  a {
+    color: #414344;
+    display: block;
+    padding: 5px 0;
+  }
+}
+
+@include tablets {
+  .cook-nav {
+    height: auto;
+    padding: 0 45px;
+  }
+
+  .navigation-list {
+    padding-left: 0;
+    margin: 50px 0;
+  }
+
+  .navigation-item {
+    a {
+      font-size: 1.5rem;
+    }
+  }
+}

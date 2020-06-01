@@ -1,0 +1,27 @@
+@import "src/styles/mixins";
+
+.recipe-list {
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 10px;
+
+  @include screen_small {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include screen_medium {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include screen_large {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @include screen_extra_large {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}

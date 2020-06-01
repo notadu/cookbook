@@ -1,0 +1,42 @@
+@import-normalize;
+@import "mixins";
+@import "variables";
+@import "transitions";
+@import "fonts";
+
+html {
+  font-size: 14px;
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-primary);
+  margin: 0;
+  font-family: "Nunito", "Arial", sans-serif;
+  color: var(--color-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--color-link-primary);
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: var(--color-link-primary--hover);
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
