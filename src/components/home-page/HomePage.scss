@@ -3,7 +3,7 @@
 .home-page {
   h2 {
     padding: 10px;
-    background-color: var(--bg-label);
+    background-color: var(--bg-label--blue);
     color: var(--color-title-secondary);
     border-radius: 5px;
     display: inline-block;
@@ -36,7 +36,7 @@
   }
 }
 
-@include screen_medium {
+@include screen__medium {
   .home-page_hero {
     figure {
       font-size: 3rem;

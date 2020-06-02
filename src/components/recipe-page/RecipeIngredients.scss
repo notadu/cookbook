@@ -1,0 +1,33 @@
+@import "../../styles/mixins";
+
+.recipe_ingredients {
+  grid-area: ingredients;
+}
+
+.recipe_ingredients-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+.recipe_ingredients-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 50px;
+  align-items: center;
+  grid-gap: 10px;
+  margin-top: 10px;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+@include screen__small {
+  .recipe_ingredients-item {
+    width: 50%;
+  }
+}

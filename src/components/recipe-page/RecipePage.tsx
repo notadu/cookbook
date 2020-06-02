@@ -8,7 +8,13 @@ import { v4 as uuid } from "uuid";
 import RecipesApi from "../../api/RecipesApi";
 import appStore from "../../store/AppStore";
 import { IRecipeFullInfo } from "../../models/IRecipe";
-import NotFoundPage from "../not-found-page/NotFoundPage";
+import Label from "../label/Label";
+import RecipeIngredients from "./RecipeIngredients";
+
+import { ReactComponent as TimerIcon } from "../../assets/icons/timer.svg";
+import { ReactComponent as LikeIcon } from "../../assets/icons/like.svg";
+
+import "./RecipePage.scss";
 
 interface IMatchParams {
   id: string;
@@ -31,23 +37,47 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
 
   render() {
     return this.recipe ? (
-      <article>
-        <h2>{this.recipe.title}</h2>
-        <img src={this.recipe.image} alt={this.recipe.title} />
-
+      <article className="recipe">
+        <h2 className="recipe_title">{this.recipe.title}</h2>
+        <div className="recipe_image">
+          <img src={this.recipe.image} alt={this.recipe.title} />
+        </div>
+        <section className="recipe_meta-info">
+          <Label>
+            <LikeIcon />
+            <span>{this.recipe.aggregateLikes}</span>
+          </Label>
+          <Label>
+            <TimerIcon />
+            <span>{this.recipe.readyInMinutes} min</span>
+          </Label>
+          {this.recipe.veryHealthy && (
+            <Label color={"blue"}>Very healthy</Label>
+          )}
+          {this.recipe.veryPopular && (
+            <Label color={"yellow"}>Very popular</Label>
+          )}
+          {this.recipe.glutenFree && <Label color={"green"}>Gluten free</Label>}
+        </section>
         <div
-          className="recipe-card_summary"
+          className="recipe_summary"
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(this.recipe.summary),
           }}
         />
-        <h3>Instructions</h3>
-        <div
-          className="recipe-card_summary"
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(this.recipe.instructions),
-          }}
-        />
+        {this.recipe.instructions && (
+          <section className="recipe_instructions">
+            <h3>Instructions</h3>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(this.recipe.instructions),
+              }}
+            />
+          </section>
+        )}
+        {!!this.recipe.extendedIngredients.length && (
+          <RecipeIngredients ingredients={this.recipe.extendedIngredients} />
+        )}
       </article>
     ) : (
       <div />

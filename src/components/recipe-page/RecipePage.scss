@@ -1,0 +1,89 @@
+@import "../../styles/mixins";
+
+.recipe {
+  max-width: 1200px;
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 26px;
+
+  display: grid;
+  grid-template-areas:
+    "title"
+    "info"
+    "image"
+    "summary"
+    "ingredients"
+    "instructions";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 300px auto auto auto;
+  grid-gap: 20px;
+}
+
+.recipe_title {
+  grid-area: title;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.recipe_meta-info {
+  grid-area: info;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  height: min-content;
+
+  .label {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+  }
+}
+
+.recipe_image {
+  grid-area: image;
+  border-radius: 10px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.recipe_summary {
+  grid-area: summary;
+}
+
+.recipe_instructions {
+  grid-area: instructions;
+}
+
+@include screen__small {
+  .recipe {
+    grid-template-areas:
+      "title title"
+      "image info"
+      "summary summary"
+      "ingredients ingredients"
+      "instructions instructions";
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 300px auto auto auto;
+    padding: 50px;
+  }
+
+  .recipe_title {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}

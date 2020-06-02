@@ -2,6 +2,7 @@ import DishType from "./DishType";
 import DietType from "./DietType";
 import ImageType from "./ImageType";
 import CuisineType from "./CuisineType";
+import IIngredient from "./IIngredient";
 
 export default interface IRecipe {
   id: number;
@@ -21,7 +22,7 @@ export interface IRecipeFullInfo extends IRecipe {
   dairyFree: boolean;
   diets: DietType[];
   dishTypes: DishType[];
-  extendedIngredients: any;
+  extendedIngredients: IIngredient[];
   gaps: string;
   glutenFree: boolean;
   healthScore: number;

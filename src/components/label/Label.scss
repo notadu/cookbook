@@ -1,0 +1,26 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 10px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--bg-primary);
+  border-radius: 5px;
+
+  font-size: 1.5rem;
+
+  &.label__yellow {
+    background-color: var(--bg-label--yellow);
+    color: #ffffff;
+  }
+
+  &.label__blue {
+    background-color: var(--bg-label--blue);
+    color: #ffffff;
+  }
+
+  &.label__green {
+    background-color: var(--bg-label--green);
+    color: #ffffff;
+  }
+}

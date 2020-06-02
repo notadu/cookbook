@@ -9,19 +9,19 @@
   grid-template-rows: auto;
   grid-gap: 10px;
 
-  @include screen_small {
-    grid-template-columns: 1fr 1fr;
+  @include screen__small {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  @include screen_medium {
-    grid-template-columns: 1fr 1fr 1fr;
+  @include screen__medium {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  @include screen_large {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  @include screen__large {
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  @include screen_extra_large {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  @include screen__extra-large {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
