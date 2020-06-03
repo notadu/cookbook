@@ -1,6 +1,6 @@
 @import "src/styles/mixins";
 
-.navigation-button {
+.menu-button {
   position: absolute;
   left: 10px;
   border: 2px solid transparent;
@@ -16,7 +16,7 @@
 }
 
 @include tablets {
-  .navigation-button {
+  .menu-button {
     display: none;
   }
 }

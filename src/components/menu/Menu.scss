@@ -4,7 +4,7 @@
   grid-area: nav;
   height: 0;
   overflow: hidden;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   transition: height 0.5s ease;
 
   &.cook-nav__opened {
@@ -12,11 +12,11 @@
   }
 }
 
-.navigation-list {
+.menu-list {
   padding-left: 10px;
 }
 
-.navigation-item {
+.menu-item {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 
   a {
@@ -32,12 +32,12 @@
     padding: 0 45px;
   }
 
-  .navigation-list {
+  .menu-list {
     padding-left: 0;
     margin: 50px 0;
   }
 
-  .navigation-item {
+  .menu-item {
     a {
       font-size: 1.5rem;
     }

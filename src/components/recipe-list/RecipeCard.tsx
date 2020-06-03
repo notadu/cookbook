@@ -36,7 +36,11 @@ const RecipeCard: React.FunctionComponent<IRecipeItemProps> = ({
   return (
     <div className={classNames("recipe-card", summary && "recipe-card__big")}>
       <div className="recipe-card_image">
-        <img src={imageSrc} alt={title} />
+        <img
+          src={imageSrc}
+          alt={title}
+          onError={() => console.log("not.loaded")}
+        />
         <div className="recipe-card_image-overlay">
           <ViewIcon />
         </div>

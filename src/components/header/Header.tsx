@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 
 import Logo from "../logo/Logo";
-import NavButton from "../navigation/NavButton";
+import MenuButton from "../menu/MenuButton";
 
 import "./Header.scss";
 
@@ -11,7 +11,7 @@ class Header extends React.Component {
   render() {
     return (
       <header className="cook-header">
-        <NavButton />
+        <MenuButton />
         <Logo />
       </header>
     );

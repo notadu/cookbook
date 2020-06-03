@@ -23,28 +23,24 @@ export const RECIPE_ROUTES: IRoute[] = [
   },
   {
     path: RECIPES_SALADS_PAGE_URL,
-    title: "Salads",
     queryParams: {
       query: "salad",
     },
   },
   {
     path: RECIPES_DESSERTS_PAGE_URL,
-    title: "Desserts",
     queryParams: {
       query: "dessert",
     },
   },
   {
     path: RECIPES_ITALIAN_CUISINE_PAGE_URL,
-    title: "Italian cuisine",
     queryParams: {
       cuisine: CuisineType.ITALIAN,
     },
   },
   {
     path: RECIPES_VEGETARIAN_DIET_PAGE_URL,
-    title: "Vegetarian diet",
     queryParams: {
       diet: DietType.VEGETARIAN,
     },

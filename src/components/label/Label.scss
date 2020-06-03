@@ -1,3 +1,5 @@
+@import "src/styles/mixins";
+
 .label {
   display: inline-flex;
   align-items: center;
@@ -7,7 +9,7 @@
   border: 1px solid var(--bg-primary);
   border-radius: 5px;
 
-  font-size: 1.5rem;
+  font-size: 1rem;
 
   &.label__yellow {
     background-color: var(--bg-label--yellow);
@@ -22,5 +24,11 @@
   &.label__green {
     background-color: var(--bg-label--green);
     color: #ffffff;
+  }
+}
+
+@include screen__medium {
+  .label {
+    font-size: 1.5rem;
   }
 }

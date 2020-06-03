@@ -6,7 +6,7 @@ import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import Main from "./main/Main";
 import NotificationContainer from "./notifications/NotificationContainer";
-import Navigation from "./navigation/Navigation";
+import Menu from "./menu/Menu";
 import Loader from "./loader/Loader";
 
 import "./App.scss";
@@ -17,7 +17,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <Header />
-        <Navigation />
+        <Menu />
         <Main />
         <Footer />
         <NotificationContainer />

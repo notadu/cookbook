@@ -1,45 +1,43 @@
 @import "src/styles/mixins";
 
-.home-page {
-  h2 {
-    padding: 10px;
-    background-color: var(--bg-label--blue);
-    color: var(--color-title-secondary);
-    border-radius: 5px;
-    display: inline-block;
-  }
-}
 .home-page_hero {
   position: relative;
-  height: 60vh;
+  height: 50vh;
   min-height: 300px;
   margin-bottom: 20px;
-
-  background-color: var(--bg-secondary);
-  background-image: url("../../assets/hero.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   border-radius: 10px;
+  overflow: hidden;
 
   figure {
     position: absolute;
     bottom: 0;
-
+    margin: 1rem;
     color: var(--color-title-secondary);
-    font-size: 2rem;
     text-shadow: 5px 5px 15px #111520;
   }
 
   blockquote {
-    margin: 0;
+    font-size: 2rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  figcaption {
+    text-align: right;
+    font-size: 1.5rem;
   }
 }
 
 @include screen__medium {
   .home-page_hero {
-    figure {
-      font-size: 3rem;
+    blockquote {
+      font-size: 2.5rem;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+
+    figcaption {
+      font-size: 2rem;
     }
   }
 }

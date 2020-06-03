@@ -25,11 +25,7 @@ class Main extends React.Component {
           exact={true}
           path={route.path}
           render={(props) => (
-            <RecipesPage
-              {...props}
-              title={route.title}
-              queryParams={route.queryParams}
-            />
+            <RecipesPage {...props} queryParams={route.queryParams} />
           )}
         />
       ))}

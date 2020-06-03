@@ -11,7 +11,6 @@ import IQueryParams from "../../models/IQueryParams";
 
 interface IRecipesProps {
   queryParams?: IQueryParams;
-  title?: string;
 }
 
 @observer
@@ -42,11 +41,9 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
   }
 
   render() {
-    const { title } = this.props;
-
     return (
       <section className="recipes-page">
-        <RecipeList title={title} recipes={this.recipes} />
+        <RecipeList recipes={this.recipes} />
       </section>
     );
   }
