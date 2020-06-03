@@ -1,19 +1,28 @@
 @import "src/styles/mixins";
 
 .home-page_hero {
+  --bg-color: #111520;
+
   position: relative;
   height: 50vh;
   min-height: 300px;
   margin-bottom: 20px;
+  background-color: var(--bg-color);
   border-radius: 10px;
   overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   figure {
     position: absolute;
     bottom: 0;
     margin: 1rem;
     color: var(--color-title-secondary);
-    text-shadow: 5px 5px 15px #111520;
+    text-shadow: 5px 5px 15px var(--bg-color);
   }
 
   blockquote {

@@ -7,12 +7,10 @@ import appStore from "../../store/AppStore";
 import RecipesApi from "../../api/RecipesApi";
 import { IRecipeFullInfo } from "../../models/IRecipe";
 import heroImage from "../../assets/hero.jpg";
-import heroPreviewImage from "../../assets/hero-tiny.jpg";
 import RecipeList from "../recipe-list/RecipesList";
+import Label from "../label/Label";
 
 import "./HomePage.scss";
-import FadeImage from "../fade-image/FadeImage";
-import Label from "../label/Label";
 
 @observer
 class HomePage extends React.Component {
@@ -37,11 +35,7 @@ class HomePage extends React.Component {
     return (
       <section className="home-page">
         <section className="home-page_hero">
-          <FadeImage
-            previewSrc={heroPreviewImage}
-            src={heroImage}
-            alt="blueberries on the plate"
-          />
+          <img src={heroImage} alt="Blueberries on the plate" />
           <figure>
             <blockquote>First we eat, then we do everything else.</blockquote>
             <figcaption>&mdash; M.F.K. Fisher</figcaption>
