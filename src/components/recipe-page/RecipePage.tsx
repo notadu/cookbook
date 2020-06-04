@@ -10,6 +10,7 @@ import appStore from "../../store/AppStore";
 import { IRecipeFullInfo } from "../../models/IRecipe";
 import Label from "../label/Label";
 import RecipeIngredients from "./RecipeIngredients";
+import Image from "../image/Image";
 
 import { ReactComponent as TimerIcon } from "../../assets/icons/timer.svg";
 import { ReactComponent as LikeIcon } from "../../assets/icons/like.svg";
@@ -40,7 +41,7 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
       <article className="recipe">
         <h2 className="recipe_title">{this.recipe.title}</h2>
         <div className="recipe_image">
-          <img src={this.recipe.image} alt={this.recipe.title} />
+          <Image src={this.recipe.image} alt={this.recipe.title} />
         </div>
         <section className="recipe_meta-info">
           <Label>

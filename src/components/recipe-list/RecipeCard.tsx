@@ -3,6 +3,7 @@ import DOMPurify from "dompurify";
 import classNames from "classnames";
 
 import IRecipe from "../../models/IRecipe";
+import Image from "../image/Image";
 
 import { ReactComponent as ViewIcon } from "../../assets/icons/view.svg";
 import { ReactComponent as TimerIcon } from "../../assets/icons/timer.svg";
@@ -36,11 +37,7 @@ const RecipeCard: React.FunctionComponent<IRecipeItemProps> = ({
   return (
     <div className={classNames("recipe-card", summary && "recipe-card__big")}>
       <div className="recipe-card_image">
-        <img
-          src={imageSrc}
-          alt={title}
-          onError={() => console.log("not.loaded")}
-        />
+        <Image src={imageSrc} alt={title} />
         <div className="recipe-card_image-overlay">
           <ViewIcon />
         </div>

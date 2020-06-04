@@ -7,8 +7,8 @@ import appStore from "../../store/AppStore";
 import RecipesApi from "../../api/RecipesApi";
 import { IRecipeFullInfo } from "../../models/IRecipe";
 import heroImage from "../../assets/hero.jpg";
-import RecipeList from "../recipe-list/RecipesList";
-import Label from "../label/Label";
+import RecipeList from "../recipe-list/RecipeList";
+import Image from "../image/Image";
 
 import "./HomePage.scss";
 
@@ -35,14 +35,16 @@ class HomePage extends React.Component {
     return (
       <section className="home-page">
         <section className="home-page_hero">
-          <img src={heroImage} alt="Blueberries on the plate" />
+          <Image src={heroImage} alt="Blueberries on the plate" />
           <figure>
             <blockquote>First we eat, then we do everything else.</blockquote>
             <figcaption>&mdash; M.F.K. Fisher</figcaption>
           </figure>
         </section>
-        <Label color="blue">Popular recipes</Label>
-        <RecipeList recipes={this.recipes} />
+        <section className="popular-recipes">
+          <h2>Popular recipes</h2>
+          <RecipeList recipes={this.recipes} />
+        </section>
       </section>
     );
   }

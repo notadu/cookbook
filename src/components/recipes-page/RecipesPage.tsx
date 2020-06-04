@@ -6,7 +6,7 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import appStore from "../../store/AppStore";
 import RecipesApi from "../../api/RecipesApi";
 import IRecipe from "../../models/IRecipe";
-import RecipeList from "../recipe-list/RecipesList";
+import RecipeList from "../recipe-list/RecipeList";
 import IQueryParams from "../../models/IQueryParams";
 
 interface IRecipesProps {

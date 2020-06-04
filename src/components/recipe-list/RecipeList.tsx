@@ -12,19 +12,17 @@ interface IRecipeListProps {
 }
 
 const RecipeList: React.FunctionComponent<IRecipeListProps> = ({ recipes }) => (
-  <section>
-    <TransitionGroup component="ul" className="recipe-list">
-      {recipes.map((recipe) => (
-        <CSSTransition key={recipe.id} timeout={500} classNames="fade">
-          <li>
-            <NavLink to={`/recipe/${recipe.id}`}>
-              <RecipeCard {...recipe} />
-            </NavLink>
-          </li>
-        </CSSTransition>
-      ))}
-    </TransitionGroup>
-  </section>
+  <TransitionGroup component="ul" className="recipe-list">
+    {recipes.map((recipe) => (
+      <CSSTransition key={recipe.id} timeout={500} classNames="fade">
+        <li>
+          <NavLink to={`/recipe/${recipe.id}`}>
+            <RecipeCard {...recipe} />
+          </NavLink>
+        </li>
+      </CSSTransition>
+    ))}
+  </TransitionGroup>
 );
 
 export default RecipeList;
