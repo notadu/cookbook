@@ -1,6 +1,5 @@
 import React from "react";
 import { observer } from "mobx-react";
-import appStore from "../store/AppStore";
 
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
@@ -21,7 +20,7 @@ class App extends React.Component {
         <Main />
         <Footer />
         <NotificationContainer />
-        {appStore.isLoading && <Loader />}
+        <Loader />
       </div>
     );
   }
