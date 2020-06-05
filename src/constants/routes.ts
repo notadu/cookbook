@@ -46,3 +46,6 @@ export const RECIPE_ROUTES: IRoute[] = [
     },
   },
 ];
+
+export const getRecipePageUrl = (id: string): string =>
+  RECIPE_PAGE_URL.replace(":id", id);

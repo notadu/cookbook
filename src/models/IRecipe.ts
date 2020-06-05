@@ -4,7 +4,12 @@ import ImageType from "./ImageType";
 import CuisineType from "./CuisineType";
 import IIngredient from "./IIngredient";
 
-export default interface IRecipe {
+export interface IRecipeSearchResultInfo {
+  id: number;
+  title: string;
+}
+
+export interface IRecipeShortInfo {
   id: number;
   image: string;
   openLicense: number;
@@ -14,7 +19,7 @@ export default interface IRecipe {
   title: string;
 }
 
-export interface IRecipeFullInfo extends IRecipe {
+export interface IRecipe extends IRecipeShortInfo {
   aggregateLikes: number;
   cheap: boolean;
   creditsText: string;

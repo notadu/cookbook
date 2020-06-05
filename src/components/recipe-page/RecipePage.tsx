@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 import RecipesApi from "../../api/RecipesApi";
 import appStore from "../../store/AppStore";
-import { IRecipeFullInfo } from "../../models/IRecipe";
+import { IRecipe } from "../../models/IRecipe";
 import Label from "../label/Label";
 import RecipeIngredients from "./RecipeIngredients";
 import Image from "../image/Image";
@@ -23,18 +23,30 @@ interface IMatchParams {
 
 @observer
 class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
-  @observable recipe: IRecipeFullInfo | undefined;
+  @observable recipe: IRecipe | undefined;
 
   componentDidMount() {
     const { match } = this.props;
     if (match.params.id) {
-      appStore.isLoading = true;
-      RecipesApi.getRecipeInfo(match.params.id)
-        .then((data) => (this.recipe = data))
-        .catch((e) => appStore.errors.set(uuid(), e.message))
-        .finally(() => (appStore.isLoading = false));
+      this.getRecipeInfo(match.params.id);
     }
   }
+
+  componentDidUpdate(prevProps: Readonly<RouteComponentProps<IMatchParams>>) {
+    const { match } = this.props;
+    const { match: prevMatch } = prevProps;
+    if (match.params.id !== prevMatch.params.id) {
+      this.getRecipeInfo(match.params.id);
+    }
+  }
+
+  getRecipeInfo = (recipeId: string) => {
+    appStore.isLoading = true;
+    RecipesApi.getRecipeInfo(recipeId)
+      .then((data) => (this.recipe = data))
+      .catch((e) => appStore.errors.set(uuid(), e.message))
+      .finally(() => (appStore.isLoading = false));
+  };
 
   render() {
     return this.recipe ? (

@@ -1,0 +1,21 @@
+@import "src/styles/mixins";
+
+.cook-sidebar {
+  grid-area: sidebar;
+  height: 200px;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  padding: 0 10px;
+  transition: height 0.5s ease;
+
+  &.cook-sidebar__hidden {
+    height: 0;
+  }
+}
+
+@include tablets {
+  .cook-sidebar {
+    padding: 0 20px;
+    height: auto;
+  }
+}

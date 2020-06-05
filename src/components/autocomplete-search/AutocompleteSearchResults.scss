@@ -1,0 +1,24 @@
+.search_results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-secondary);
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--color-primary);
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    padding: 5px 0;
+  }
+
+  a {
+    display: block;
+    color: var(--color-primary);
+  }
+}

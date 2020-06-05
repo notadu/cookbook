@@ -2,7 +2,7 @@ import React from "react";
 import DOMPurify from "dompurify";
 import classNames from "classnames";
 
-import IRecipe from "../../models/IRecipe";
+import { IRecipeShortInfo } from "../../models/IRecipe";
 import Image from "../image/Image";
 
 import { ReactComponent as ViewIcon } from "../../assets/icons/view.svg";
@@ -12,7 +12,7 @@ import "./RecipeCard.scss";
 
 const BASE_IMAGE_URL = "https://spoonacular.com/recipeImages/";
 
-interface IRecipeItemProps extends IRecipe {
+interface IRecipeItemProps extends IRecipeShortInfo {
   summary?: string;
 }
 const SANITIZER_CONFIG = {

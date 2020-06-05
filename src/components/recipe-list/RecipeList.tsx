@@ -3,12 +3,13 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 
 import RecipeCard from "./RecipeCard";
-import IRecipe from "../../models/IRecipe";
+import { IRecipeShortInfo } from "../../models/IRecipe";
+import { getRecipePageUrl } from "../../constants/routes";
 
 import "./RecipeList.scss";
 
 interface IRecipeListProps {
-  recipes: IRecipe[];
+  recipes: IRecipeShortInfo[];
 }
 
 const RecipeList: React.FunctionComponent<IRecipeListProps> = ({ recipes }) => (
@@ -16,7 +17,7 @@ const RecipeList: React.FunctionComponent<IRecipeListProps> = ({ recipes }) => (
     {recipes.map((recipe) => (
       <CSSTransition key={recipe.id} timeout={500} classNames="fade">
         <li>
-          <NavLink to={`/recipe/${recipe.id}`}>
+          <NavLink to={getRecipePageUrl(recipe.id.toString())}>
             <RecipeCard {...recipe} />
           </NavLink>
         </li>

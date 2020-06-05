@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import menuStore from "../../store/MenuStore";
+import menuStore from "../../store/SidebarStore";
 import { ReactComponent as MenuIcon } from "../../assets/icons/menu.svg";
 
 import "./MenuButton.scss";
@@ -10,7 +10,7 @@ import "./MenuButton.scss";
 class MenuButton extends React.Component {
   render() {
     return (
-      <button className="menu-button" onClick={menuStore.toggleMenu}>
+      <button className="menu-button" onClick={menuStore.toggleSidebar}>
         <MenuIcon />
       </button>
     );

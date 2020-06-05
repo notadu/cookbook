@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 
 import appStore from "../../store/AppStore";
 import RecipesApi from "../../api/RecipesApi";
-import { IRecipeFullInfo } from "../../models/IRecipe";
+import { IRecipe } from "../../models/IRecipe";
 import heroImage from "../../assets/hero.jpg";
 import RecipeList from "../recipe-list/RecipeList";
 import Image from "../image/Image";
@@ -14,7 +14,7 @@ import "./HomePage.scss";
 
 @observer
 class HomePage extends React.Component {
-  @observable recipes: IRecipeFullInfo[] = [];
+  @observable recipes: IRecipe[] = [];
   @observable filterParams = {
     number: 5,
   };

@@ -20,7 +20,6 @@ class Image extends React.Component<IHeroImageProps> {
 
   render() {
     const { src, alt } = this.props;
-    console.log(this.isLoading);
     return (
       <div className={classNames("image", this.isLoading && "image__loading")}>
         <img src={src} alt={alt} onLoad={this.onLoad} />
