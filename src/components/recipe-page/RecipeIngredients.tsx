@@ -16,7 +16,7 @@ const RecipeIngredients: React.FunctionComponent<IIngredientsProps> = ({
     <h3>Ingredients</h3>
     <ul className="recipe_ingredients-list">
       {ingredients.map((ingredient) => (
-        <li key={ingredient.id} className="recipe_ingredients-item">
+        <li key={ingredient.originalString} className="recipe_ingredients-item">
           <img
             src={`${INGREDIENTS_IMAGE_URL}/${ingredient.image}`}
             alt={ingredient.name}
