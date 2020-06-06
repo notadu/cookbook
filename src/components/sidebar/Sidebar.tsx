@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import classNames from "classnames";
 
 import Menu from "../menu/Menu";
-import Search from "../autocomplete-search/AutocompleteSearch";
+import Search from "../search-combobox/SearchCombobox";
 import sidebarStore from "../../store/SidebarStore";
 import { MIN_TABLET_WIDTH } from "../../constants/common";
 

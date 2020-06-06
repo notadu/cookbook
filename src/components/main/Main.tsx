@@ -43,7 +43,11 @@ class Main extends React.Component {
         <Suspense fallback={<Loader />}>
           <Switch>
             <Route exact={true} path={HOME_PAGE_URL} component={HomePage} />
-            <Route exact={true} path={RECIPE_PAGE_URL} component={RecipePage} />
+            <Route
+              exact={true}
+              path={`${RECIPE_PAGE_URL}/:id`}
+              component={RecipePage}
+            />
             {this.renderRecipeRoutes()}
             <Route component={NotFoundPage} />
           </Switch>

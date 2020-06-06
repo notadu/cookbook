@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import RecipeCard from "./RecipeCard";
 import { IRecipeShortInfo } from "../../models/IRecipe";
-import { getRecipePageUrl } from "../../constants/routes";
+import { RECIPE_PAGE_URL } from "../../constants/routes";
 
 import "./RecipeList.scss";
 
@@ -17,7 +17,7 @@ const RecipeList: React.FunctionComponent<IRecipeListProps> = ({ recipes }) => (
     {recipes.map((recipe) => (
       <CSSTransition key={recipe.id} timeout={500} classNames="fade">
         <li>
-          <NavLink to={getRecipePageUrl(recipe.id.toString())}>
+          <NavLink to={`${RECIPE_PAGE_URL}/${recipe.id}`}>
             <RecipeCard {...recipe} />
           </NavLink>
         </li>

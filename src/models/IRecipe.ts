@@ -4,7 +4,7 @@ import ImageType from "./ImageType";
 import CuisineType from "./CuisineType";
 import IIngredient from "./IIngredient";
 
-export interface IRecipeSearchResultInfo {
+export interface IRecipeSearchResult {
   id: number;
   title: string;
 }

@@ -2,7 +2,7 @@ import Api from "./Api";
 import IQueryParams from "../models/IQueryParams";
 import {
   IRecipeShortInfo,
-  IRecipeSearchResultInfo,
+  IRecipeSearchResult,
   IRecipe,
 } from "../models/IRecipe";
 import { AxiosResponse } from "axios";
@@ -53,7 +53,7 @@ class RecipesApi {
 
   getAutocompleteSearchResults(
     params: IQueryParams
-  ): Promise<IRecipeSearchResultInfo[]> {
+  ): Promise<IRecipeSearchResult[]> {
     return Api.get(AUTOCOMPLETE_SEARCH_URL, { params }).then(
       (response) => response.data
     );

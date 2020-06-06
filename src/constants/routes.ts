@@ -3,7 +3,7 @@ import CuisineType from "../models/CuisineType";
 import IQueryParams from "../models/IQueryParams";
 
 export const HOME_PAGE_URL = "/";
-export const RECIPE_PAGE_URL = "/recipe/:id";
+export const RECIPE_PAGE_URL = "/recipe";
 export const RECIPES_PAGE_URL = "/recipes";
 
 export const RECIPES_ITALIAN_CUISINE_PAGE_URL = "/recipes/italian-cuisine";
@@ -46,6 +46,3 @@ export const RECIPE_ROUTES: IRoute[] = [
     },
   },
 ];
-
-export const getRecipePageUrl = (id: string): string =>
-  RECIPE_PAGE_URL.replace(":id", id);
