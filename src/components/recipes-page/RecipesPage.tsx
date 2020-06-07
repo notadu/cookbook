@@ -5,6 +5,7 @@ import { v4 as uuid } from "uuid";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 
 import appStore from "../../store/AppStore";
+import notificationStore from "../../store/NotificationStore";
 import RecipesApi from "../../api/RecipesApi";
 import { IRecipeShortInfo } from "../../models/IRecipe";
 import RecipeList from "../recipe-list/RecipeList";
@@ -36,7 +37,9 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
     this.recipes = [];
     RecipesApi.getRecipes(queryParams)
       .then((recipes) => (this.recipes = [...recipes]))
-      .catch((error) => appStore.errors.set(uuid(), error.message))
+      .catch((error) =>
+        notificationStore.notifications.set(uuid(), error.message)
+      )
       .finally(() => (appStore.isLoading = false));
   };
 

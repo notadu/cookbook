@@ -7,6 +7,7 @@ import Main from "./main/Main";
 import NotificationContainer from "./notifications/NotificationContainer";
 import Loader from "./loader/Loader";
 import Sidebar from "./sidebar/Sidebar";
+import appStore from "../store/AppStore";
 
 import "./App.scss";
 
@@ -20,7 +21,7 @@ class App extends React.Component {
         <Main />
         <Footer />
         <NotificationContainer />
-        <Loader />
+        {appStore.isLoading && <Loader />}
       </div>
     );
   }

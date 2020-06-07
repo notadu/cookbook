@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import { v4 as uuid } from "uuid";
 
 import appStore from "../../store/AppStore";
+import notificationStore from "../../store/NotificationStore";
 import RecipesApi from "../../api/RecipesApi";
 import { IRecipe } from "../../models/IRecipe";
 import heroImage from "../../assets/hero.jpg";
@@ -15,15 +16,16 @@ import "./HomePage.scss";
 @observer
 class HomePage extends React.Component {
   @observable recipes: IRecipe[] = [];
-  @observable filterParams = {
-    number: 5,
-  };
+  number = 5;
+
   @action
   loadRandomRecipes = () => {
     appStore.isLoading = true;
-    RecipesApi.getRandomRecipes(this.filterParams)
+    RecipesApi.getRandomRecipes({ number: this.number })
       .then((recipes) => (this.recipes = [...recipes]))
-      .catch((error) => appStore.errors.set(uuid(), error.message))
+      .catch((error) =>
+        notificationStore.notifications.set(uuid(), error.message)
+      )
       .finally(() => (appStore.isLoading = false));
   };
 

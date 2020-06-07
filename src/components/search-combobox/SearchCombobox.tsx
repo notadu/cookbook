@@ -11,7 +11,8 @@ import SearchSuggestions from "./SearchSuggestions";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 import { RECIPE_PAGE_URL, RECIPES_PAGE_URL } from "../../constants/routes";
 import history from "../../history";
-import appStore from "../../store/AppStore";
+import notificationStore from "../../store/NotificationStore";
+
 import {
   ARROW_DOWN_KEY,
   ARROW_UP_KEY,
@@ -61,7 +62,9 @@ class SearchCombobox extends React.Component {
 
     RecipesApi.getAutocompleteSearchResults(queryParams)
       .then((searchResults) => (this.suggestions = searchResults))
-      .catch((error) => appStore.errors.set(uuid(), error.message));
+      .catch((error) =>
+        notificationStore.notifications.set(uuid(), error.message)
+      );
   };
 
   @action
