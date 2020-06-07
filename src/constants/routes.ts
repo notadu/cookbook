@@ -3,6 +3,7 @@ import CuisineType from "../models/CuisineType";
 import IQueryParams from "../models/IQueryParams";
 
 export const HOME_PAGE_URL = "/";
+export const FAVORITE_RECIPES_PAGE_URL = "/favorite";
 export const RECIPE_PAGE_URL = "/recipe";
 export const RECIPES_PAGE_URL = "/recipes";
 

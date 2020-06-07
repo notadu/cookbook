@@ -12,9 +12,9 @@ import { IRecipe } from "../../models/IRecipe";
 import Label from "../label/Label";
 import RecipeIngredients from "./RecipeIngredients";
 import Image from "../image/Image";
+import FavoriteBadge from "../favorite-badge/FavoriteBadge";
 
 import { ReactComponent as TimerIcon } from "../../assets/icons/timer.svg";
-import { ReactComponent as LikeIcon } from "../../assets/icons/like.svg";
 
 import "./RecipePage.scss";
 
@@ -54,16 +54,16 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
       <section className="recipe-page">
         {this.recipe && (
           <article className="recipe">
+            <FavoriteBadge
+              isChecked={appStore.favoriteRecipes.has(this.recipe.id)}
+              onToggle={() => appStore.toggleFavoriteRecipe(this.recipe!.id)}
+            />
             <h2 className="recipe_title">{this.recipe.title}</h2>
             <div className="recipe_image">
               <Image src={this.recipe.image} alt={this.recipe.title} />
             </div>
-            <section className="recipe_meta-info">
-              <Label>
-                <LikeIcon />
-                <span>{this.recipe.aggregateLikes}</span>
-              </Label>
-              <Label>
+            <div className="recipe_meta-info">
+              <Label className="recipe_cook-time">
                 <TimerIcon />
                 <span>{this.recipe.readyInMinutes} min</span>
               </Label>
@@ -76,7 +76,7 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
               {this.recipe.glutenFree && (
                 <Label color={"green"}>Gluten free</Label>
               )}
-            </section>
+            </div>
             <div
               className="recipe_summary"
               dangerouslySetInnerHTML={{
@@ -84,14 +84,14 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
               }}
             />
             {this.recipe.instructions && (
-              <section className="recipe_instructions">
+              <div className="recipe_instructions">
                 <h3>Instructions</h3>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(this.recipe.instructions),
                   }}
                 />
-              </section>
+              </div>
             )}
             {!!this.recipe.extendedIngredients.length && (
               <RecipeIngredients

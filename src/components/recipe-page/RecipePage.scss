@@ -8,6 +8,7 @@
   margin: 0 auto;
   font-size: 1rem;
   line-height: 26px;
+  position: relative;
 
   display: grid;
   grid-template-areas:
@@ -20,6 +21,17 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 300px auto auto auto;
   grid-gap: 20px;
+
+  .favorite-badge {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
 
 .recipe_title {
@@ -40,7 +52,9 @@
     margin-right: 10px;
     margin-bottom: 10px;
   }
+}
 
+.recipe_cook-time {
   svg {
     width: 20px;
     height: 20px;
@@ -81,6 +95,13 @@
     grid-template-rows: auto 300px auto auto auto;
     padding: 50px;
     font-size: 16px;
+
+    .favorite-badge {
+      svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
   }
 
   .recipe_title {

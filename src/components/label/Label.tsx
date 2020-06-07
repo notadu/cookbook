@@ -7,9 +7,14 @@ type LabelColor = "green" | "blue" | "yellow";
 
 interface ILapelProps {
   color?: LabelColor;
+  className?: string;
 }
-const Label: React.FunctionComponent<ILapelProps> = ({ children, color }) => (
-  <div className={classNames("label", color && `label__${color}`)}>
+const Label: React.FunctionComponent<ILapelProps> = ({
+  children,
+  color,
+  className,
+}) => (
+  <div className={classNames("label", color && `label__${color}`, className)}>
     {children}
   </div>
 );

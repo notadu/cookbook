@@ -74,8 +74,9 @@
 .recipe-card_footer {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 
+  .favorite-badge svg,
   svg {
     width: 20px;
     height: 20px;

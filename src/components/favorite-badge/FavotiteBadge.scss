@@ -1,0 +1,17 @@
+.favorite-badge {
+  display: flex;
+  cursor: pointer;
+  --color-favorite: #cb3434;
+
+  &:hover {
+    svg {
+      fill: var(--color-link-primary--hover);
+    }
+  }
+
+  &.favorite-badge__checked {
+    svg {
+      fill: var(--color-favorite);
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { observer } from "mobx-react";
 
 import {
+  FAVORITE_RECIPES_PAGE_URL,
   HOME_PAGE_URL,
   RECIPE_PAGE_URL,
   RECIPE_ROUTES,
@@ -14,6 +15,9 @@ import Loader from "../loader/Loader";
 import "./Main.scss";
 
 const HomePage = lazy(() => import("../home-page/HomePage"));
+const FavoriteRecipes = lazy(() =>
+  import("../favorite-recipes-page/FavoriteRecipes")
+);
 const RecipePage = lazy(() => import("../recipe-page/RecipePage"));
 const RecipesPage = lazy(() => import("../recipes-page/RecipesPage"));
 
@@ -43,6 +47,11 @@ class Main extends React.Component {
         <Suspense fallback={<Loader />}>
           <Switch>
             <Route exact={true} path={HOME_PAGE_URL} component={HomePage} />
+            <Route
+              exact={true}
+              path={FAVORITE_RECIPES_PAGE_URL}
+              component={FavoriteRecipes}
+            />
             <Route
               exact={true}
               path={`${RECIPE_PAGE_URL}/:id`}
