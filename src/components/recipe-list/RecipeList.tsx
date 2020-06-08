@@ -15,6 +15,7 @@ interface IRecipeListProps {
   isLoading: boolean;
   totalRecipesNumber: number;
   onShowMoreClick?: () => void;
+  errorMessage?: string;
 }
 
 @observer
@@ -50,7 +51,7 @@ class RecipeList extends React.Component<IRecipeListProps> {
   }
 
   render() {
-    const { recipes } = this.props;
+    const { recipes, errorMessage } = this.props;
     return (
       <>
         <TransitionGroup component="ul" className="recipe-list">
@@ -66,6 +67,7 @@ class RecipeList extends React.Component<IRecipeListProps> {
         </TransitionGroup>
         {this.preloader}
         {this.showMoreButton}
+        {!!errorMessage && !recipes.length && <div>{errorMessage}</div>}
       </>
     );
   }

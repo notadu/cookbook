@@ -8,6 +8,7 @@ import RecipesStore from "../../store/RecipesStore";
 import notificationStore from "../../store/NotificationStore";
 import RecipesApi from "../../api/RecipesApi";
 import RecipeList from "../recipe-list/RecipeList";
+import { PAYMENT_REQUIRED_ERROR_CODE } from "../../constants/common";
 
 @observer
 class FavoriteRecipes extends React.Component {
@@ -38,11 +39,11 @@ class FavoriteRecipes extends React.Component {
     const recipesIds = Array.from(appStore.favoriteRecipes.keys());
     const recipesIdsPerPage = recipesIds.slice(
       this.store.offset,
-      this.store.offset + this.store.recipesNumber
+      this.store.offset + this.store.recipesNumberPerPage
     );
 
-    console.log("all: " + recipesIds);
-    console.log("loaded: " + recipesIdsPerPage);
+    console.log("all: " + recipesIds.length);
+    console.log("loaded: " + recipesIdsPerPage.length);
 
     this.store.isLoading = true;
     RecipesApi.getRecipesInfo(recipesIdsPerPage)
@@ -50,7 +51,14 @@ class FavoriteRecipes extends React.Component {
         this.store.recipes = [...recipes];
         this.store.increaseOffset();
       })
-      .catch((error) => notificationStore.notifications.set(uuid(), error))
+      .catch((error) => {
+        notificationStore.notifications.set(uuid(), error.message);
+        if (error.code === PAYMENT_REQUIRED_ERROR_CODE) {
+          this.store.errorMessage = `
+          Sorry, but number of API calls for free developer plan to 
+          Spoonacular is reached. Please, use or test the app tomorrow!`;
+        }
+      })
       .finally(() => (this.store.isLoading = false));
   };
 
@@ -60,7 +68,7 @@ class FavoriteRecipes extends React.Component {
   };
 
   render() {
-    const { recipes, isLoading, totalRecipesNumber } = this.store;
+    const { recipes, isLoading, totalRecipesNumber, errorMessage } = this.store;
 
     return (
       <div className="favorite-recipes-page">
@@ -69,6 +77,7 @@ class FavoriteRecipes extends React.Component {
           isLoading={isLoading}
           totalRecipesNumber={totalRecipesNumber}
           onShowMoreClick={this.handleShowMoreClick}
+          errorMessage={errorMessage}
         />
       </div>
     );

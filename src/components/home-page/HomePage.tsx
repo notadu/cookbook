@@ -43,10 +43,12 @@ class HomePage extends React.Component {
             <figcaption>&mdash; M.F.K. Fisher</figcaption>
           </figure>
         </section>
-        <section className="popular-recipes">
-          <h2>Popular recipes</h2>
-          <RecipeSlider recipes={this.recipes} />
-        </section>
+        {!!this.recipes.length && (
+          <section className="popular-recipes">
+            <h2>Popular recipes</h2>
+            <RecipeSlider recipes={this.recipes} />
+          </section>
+        )}
       </section>
     );
   }

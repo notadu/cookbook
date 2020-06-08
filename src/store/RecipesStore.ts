@@ -4,13 +4,14 @@ import { IRecipeShortInfo } from "../models/IRecipe";
 class RecipesStore {
   @observable recipes: IRecipeShortInfo[] = [];
   @observable offset = 0;
-  @observable recipesNumber = 15;
+  @observable recipesNumberPerPage = 15;
   @observable totalRecipesNumber = 0;
   @observable isLoading = false;
+  @observable errorMessage = "";
 
   @action.bound
   increaseOffset() {
-    this.offset += this.recipesNumber;
+    this.offset += this.recipesNumberPerPage;
   }
 }
 

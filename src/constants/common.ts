@@ -6,3 +6,5 @@ export const ARROW_DOWN_KEY = "ArrowDown";
 export const MIN_TABLET_WIDTH = 768;
 
 export const FAVORITE_RECIPES_KEY = "favoriteRecipes";
+
+export const PAYMENT_REQUIRED_ERROR_CODE = 402;

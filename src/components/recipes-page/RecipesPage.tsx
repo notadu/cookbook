@@ -9,6 +9,7 @@ import RecipesStore from "../../store/RecipesStore";
 import RecipesApi from "../../api/RecipesApi";
 import RecipeList from "../recipe-list/RecipeList";
 import IQueryParams from "../../models/IQueryParams";
+import { PAYMENT_REQUIRED_ERROR_CODE } from "../../constants/common";
 
 interface IRecipesProps {
   queryParams?: IQueryParams;
@@ -29,7 +30,7 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
     const searchParam = urlSearchParams.get("search");
     const queryParams: IQueryParams = {
       ...this.props.queryParams,
-      number: this.store.recipesNumber,
+      number: this.store.recipesNumberPerPage,
       offset: this.store.offset,
     };
 
@@ -45,9 +46,14 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
         this.store.offset = offset;
         this.store.totalRecipesNumber = totalResults;
       })
-      .catch((error) =>
-        notificationStore.notifications.set(uuid(), error.message)
-      )
+      .catch((error) => {
+        notificationStore.notifications.set(uuid(), error.message);
+        if (error.code === PAYMENT_REQUIRED_ERROR_CODE) {
+          this.store.errorMessage = `
+          Sorry, but number of API calls for free developer plan to 
+          Spoonacular is reached. Please, use or test the app tomorrow!`;
+        }
+      })
       .finally(() => (this.store.isLoading = false));
   };
 
@@ -70,7 +76,7 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
   };
 
   render() {
-    const { recipes, isLoading, totalRecipesNumber } = this.store;
+    const { recipes, isLoading, totalRecipesNumber, errorMessage } = this.store;
     return (
       <section className="recipes-page">
         <RecipeList
@@ -78,6 +84,7 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
           isLoading={isLoading}
           totalRecipesNumber={totalRecipesNumber}
           onShowMoreClick={this.handleShowMoreClick}
+          errorMessage={errorMessage}
         />
       </section>
     );
