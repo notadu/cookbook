@@ -1,13 +1,12 @@
 import React from "react";
-import { action, observable } from "mobx";
+import { action } from "mobx";
 import { observer } from "mobx-react";
 import { v4 as uuid } from "uuid";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 
-import appStore from "../../store/AppStore";
 import notificationStore from "../../store/NotificationStore";
+import RecipesStore from "../../store/RecipesStore";
 import RecipesApi from "../../api/RecipesApi";
-import { IRecipeShortInfo } from "../../models/IRecipe";
 import RecipeList from "../recipe-list/RecipeList";
 import IQueryParams from "../../models/IQueryParams";
 
@@ -17,8 +16,12 @@ interface IRecipesProps {
 
 @observer
 class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
-  number = 15;
-  @observable recipes: IRecipeShortInfo[] = [];
+  store: RecipesStore;
+
+  constructor(props: IRecipesProps & RouteComponentProps) {
+    super(props);
+    this.store = new RecipesStore();
+  }
 
   @action
   loadRecipes = () => {
@@ -26,21 +29,26 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
     const searchParam = urlSearchParams.get("search");
     const queryParams: IQueryParams = {
       ...this.props.queryParams,
-      number: this.number,
+      number: this.store.recipesNumber,
+      offset: this.store.offset,
     };
 
     if (searchParam) {
       queryParams.query = searchParam;
     }
 
-    appStore.isLoading = true;
-    this.recipes = [];
+    this.store.isLoading = true;
     RecipesApi.getRecipes(queryParams)
-      .then((recipes) => (this.recipes = [...recipes]))
+      .then((data) => {
+        const { results, offset, totalResults } = data;
+        this.store.recipes = [...this.store.recipes, ...results];
+        this.store.offset = offset;
+        this.store.totalRecipesNumber = totalResults;
+      })
       .catch((error) =>
         notificationStore.notifications.set(uuid(), error.message)
       )
-      .finally(() => (appStore.isLoading = false));
+      .finally(() => (this.store.isLoading = false));
   };
 
   componentDidMount() {
@@ -56,10 +64,21 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
     }
   }
 
+  handleShowMoreClick = () => {
+    this.store.increaseOffset();
+    this.loadRecipes();
+  };
+
   render() {
+    const { recipes, isLoading, totalRecipesNumber } = this.store;
     return (
       <section className="recipes-page">
-        <RecipeList recipes={this.recipes} />
+        <RecipeList
+          recipes={recipes}
+          isLoading={isLoading}
+          totalRecipesNumber={totalRecipesNumber}
+          onShowMoreClick={this.handleShowMoreClick}
+        />
       </section>
     );
   }

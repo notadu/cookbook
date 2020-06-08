@@ -14,10 +14,6 @@
     box-shadow: 0 12px 28px 0 rgba(151, 160, 204, 0.3);
     transform: translateY(-5px);
   }
-
-  &__big {
-    height: 400px;
-  }
 }
 
 .recipe-card_image {
@@ -64,11 +60,6 @@
   &:hover {
     text-decoration: underline;
   }
-}
-
-.recipe-card_summary {
-  color: var(--color-primary);
-  margin-bottom: 1rem;
 }
 
 .recipe-card_footer {

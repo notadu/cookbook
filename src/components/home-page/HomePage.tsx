@@ -8,8 +8,8 @@ import notificationStore from "../../store/NotificationStore";
 import RecipesApi from "../../api/RecipesApi";
 import { IRecipe } from "../../models/IRecipe";
 import heroImage from "../../assets/hero.jpg";
-import RecipeList from "../recipe-list/RecipeList";
 import Image from "../image/Image";
+import RecipeSlider from "../recipe-slider/RecipeSlider";
 
 import "./HomePage.scss";
 
@@ -45,7 +45,7 @@ class HomePage extends React.Component {
         </section>
         <section className="popular-recipes">
           <h2>Popular recipes</h2>
-          <RecipeList recipes={this.recipes} />
+          <RecipeSlider recipes={this.recipes} />
         </section>
       </section>
     );
