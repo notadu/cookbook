@@ -35,13 +35,12 @@ class FavoriteRecipes extends React.Component {
   @action
   loadFavoriteRecipes = () => {
     const recipesIds = Array.from(appStore.favoriteRecipes.keys());
-    let requests = recipesIds.map((id) =>
-      RecipesApi.getRecipeInfo(id.toString())
-    );
 
     appStore.isLoading = true;
-    Promise.all(requests)
-      .then((recipes) => (this.recipes = recipes))
+    RecipesApi.getRecipesInfo(recipesIds)
+      .then((recipes) => {
+        this.recipes = [...recipes];
+      })
       .catch((error) => notificationStore.notifications.set(uuid(), error))
       .finally(() => (appStore.isLoading = false));
   };

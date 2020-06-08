@@ -12,6 +12,10 @@
     display: block;
     padding: 5px 0;
   }
+
+  &.menu-item__with-margin {
+    margin-top: 10px;
+  }
 }
 
 @include tablets {

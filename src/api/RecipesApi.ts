@@ -11,6 +11,7 @@ const RANDOM_RECIPES_URL = "/recipes/random";
 const SEARCH_RECIPES_URL = "/recipes/search";
 const AUTOCOMPLETE_SEARCH_URL = "/recipes/autocomplete";
 const SEARCH_RECIPE_INFO_URL_PATTERN = "/recipes/{id}/information";
+const RECIPES_IFO_BULK_URL = "/recipes/informationBulk?ids=";
 
 interface ISearchRecipesResponse {
   baseUri: string;
@@ -23,23 +24,16 @@ interface ISearchRecipesResponse {
   totalResults: number;
 }
 
-interface IRandomRecipesResponse {
-  recipes: IRecipe[];
-}
-
 class RecipesApi {
-  getRecipes(params?: IQueryParams): Promise<IRecipeShortInfo[]> {
+  getRecipes(params?: IQueryParams): Promise<ISearchRecipesResponse> {
     return Api.get(SEARCH_RECIPES_URL, { params }).then(
-      (response: AxiosResponse<ISearchRecipesResponse>) => {
-        const { data } = response;
-        return data.results;
-      }
+      (response) => response.data
     );
   }
 
   getRandomRecipes(params?: IQueryParams): Promise<IRecipe[]> {
     return Api.get(RANDOM_RECIPES_URL, { params }).then(
-      (response: AxiosResponse<IRandomRecipesResponse>) => {
+      (response: AxiosResponse<{ recipes: IRecipe[] }>) => {
         const { data } = response;
         return data.recipes;
       }
@@ -49,6 +43,11 @@ class RecipesApi {
   getRecipeInfo(id: string): Promise<IRecipe> {
     const recipeInfoUrl = SEARCH_RECIPE_INFO_URL_PATTERN.replace("{id}", id);
     return Api.get(recipeInfoUrl).then((response) => response.data);
+  }
+
+  getRecipesInfo(ids: number[]): Promise<IRecipe[]> {
+    const recipeInfoBulkUrl = `${RECIPES_IFO_BULK_URL}${ids}`;
+    return Api.get(recipeInfoBulkUrl).then((response) => response.data);
   }
 
   getAutocompleteSearchResults(
