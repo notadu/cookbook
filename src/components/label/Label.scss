@@ -5,24 +5,25 @@
   align-items: center;
 
   padding: 10px;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--bg-primary);
+  background-color: var(--white);
+  border: 1px solid var(--cultured);
   border-radius: 5px;
 
   font-size: 1rem;
+  text-transform: capitalize;
 
-  &.label__yellow {
-    background-color: var(--bg-label--yellow);
+  &.label__red {
+    background-color: var(--tart-orange);
     color: #ffffff;
   }
 
   &.label__blue {
-    background-color: var(--bg-label--blue);
+    background-color: var(--pacific-blue);
     color: #ffffff;
   }
 
   &.label__green {
-    background-color: var(--bg-label--green);
+    background-color: var(--rifle-green);
     color: #ffffff;
   }
 }

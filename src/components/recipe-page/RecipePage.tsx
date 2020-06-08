@@ -68,13 +68,13 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
                 <span>{this.recipe.readyInMinutes} min</span>
               </Label>
               {this.recipe.veryHealthy && (
-                <Label color={"blue"}>Very healthy</Label>
+                <Label color="blue">Very healthy</Label>
               )}
               {this.recipe.veryPopular && (
-                <Label color={"yellow"}>Very popular</Label>
+                <Label color="red">Very popular</Label>
               )}
               {this.recipe.glutenFree && (
-                <Label color={"green"}>Gluten free</Label>
+                <Label color="green">Gluten free</Label>
               )}
             </div>
             <div
