@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-import { ReactComponent as LoveIcon } from "../../assets/icons/love.svg";
+import { ReactComponent as HeartIcon } from "../../assets/icons/heart.svg";
 
 import "./FavotiteBadge.scss";
 
@@ -38,7 +38,7 @@ class FavoriteBadge extends React.Component<IFavoriteBadgeProps> {
         onKeyDown={this.handleKeyDown}
         tabIndex={0}
       >
-        <LoveIcon />
+        <HeartIcon />
       </div>
     );
   }

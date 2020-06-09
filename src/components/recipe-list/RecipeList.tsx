@@ -27,8 +27,10 @@ class RecipeList extends React.Component<IRecipeListProps> {
       recipes,
       isLoading,
       onShowMoreClick,
+      errorMessage,
     } = this.props;
-    const isButtonVisible = totalRecipesNumber > recipes.length && !isLoading;
+    const isButtonVisible =
+      totalRecipesNumber > recipes.length && !isLoading && !errorMessage;
 
     return (
       isButtonVisible && (
