@@ -18,13 +18,18 @@ class FavoriteRecipes extends React.Component {
   constructor(props: {}) {
     super(props);
     this.store = new RecipesStore();
+
     this.disposer = reaction(
       () => Array.from(appStore.favoriteRecipes).map((id) => id),
-      () => this.loadFavoriteRecipes()
+      () => {
+        this.store.totalRecipesNumber = appStore.favoriteRecipes.size;
+        this.loadFavoriteRecipes();
+      }
     );
   }
 
   componentDidMount() {
+    this.store.totalRecipesNumber = appStore.favoriteRecipes.size;
     this.loadFavoriteRecipes();
   }
 
@@ -37,19 +42,11 @@ class FavoriteRecipes extends React.Component {
   @action
   loadFavoriteRecipes = () => {
     const recipesIds = Array.from(appStore.favoriteRecipes.keys());
-    const recipesIdsPerPage = recipesIds.slice(
-      this.store.offset,
-      this.store.offset + this.store.recipesNumberPerPage
-    );
-
-    console.log("all: " + recipesIds.length);
-    console.log("loaded: " + recipesIdsPerPage.length);
 
     this.store.isLoading = true;
-    RecipesApi.getRecipesInfo(recipesIdsPerPage)
+    RecipesApi.getRecipesInfo(recipesIds)
       .then((recipes) => {
         this.store.recipes = [...recipes];
-        this.store.increaseOffset();
       })
       .catch((error) => {
         notificationStore.notifications.set(uuid(), error.message);
@@ -64,16 +61,26 @@ class FavoriteRecipes extends React.Component {
 
   handleShowMoreClick = () => {
     this.store.increaseOffset();
-    this.loadFavoriteRecipes();
   };
 
   render() {
-    const { recipes, isLoading, totalRecipesNumber, errorMessage } = this.store;
+    const {
+      recipes,
+      isLoading,
+      offset,
+      totalRecipesNumber,
+      recipesNumberPerPage,
+      errorMessage,
+    } = this.store;
+    const visibleRecipes = recipes.slice(
+      0,
+      offset * recipesNumberPerPage + recipesNumberPerPage
+    );
 
     return (
       <div className="favorite-recipes-page">
         <RecipeList
-          recipes={recipes}
+          recipes={visibleRecipes}
           isLoading={isLoading}
           totalRecipesNumber={totalRecipesNumber}
           onShowMoreClick={this.handleShowMoreClick}
