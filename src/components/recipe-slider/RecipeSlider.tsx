@@ -34,8 +34,8 @@ class RecipeSlider extends React.Component<IRecipeSliderProps> {
       <div className="recipe-slider">
         <TransitionGroup component="ul" className="slider-tile-list">
           {recipes.map((recipe) => (
-            <CSSTransition classNames="fade" timeout={500}>
-              <li key={recipe.id}>
+            <CSSTransition key={recipe.id} classNames="fade" timeout={500}>
+              <li>
                 <NavLink to={`${RECIPE_PAGE_URL}/${recipe.id}`}>
                   {this.renderSliderTile(recipe)}
                 </NavLink>
