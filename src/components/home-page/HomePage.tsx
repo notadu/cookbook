@@ -16,7 +16,7 @@ import "./HomePage.scss";
 @observer
 class HomePage extends React.Component {
   @observable recipes: IRecipe[] = [];
-  number = 5;
+  number = 10;
 
   @action
   loadRandomRecipes = () => {

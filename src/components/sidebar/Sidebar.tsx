@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Menu from "../menu/Menu";
 import Search from "../search-combobox/SearchCombobox";
 import sidebarStore from "../../store/SidebarStore";
-import { MIN_TABLET_WIDTH } from "../../constants/common";
+import { TABLET_WIDTH } from "../../constants/common";
 
 import "./Sidebar.scss";
 
@@ -20,7 +20,7 @@ class Sidebar extends React.Component {
   }
 
   setSidebarVisibility = () => {
-    if (sidebarStore.isSidebarHidden && window.innerWidth >= MIN_TABLET_WIDTH) {
+    if (sidebarStore.isSidebarHidden && window.innerWidth >= TABLET_WIDTH) {
       sidebarStore.isSidebarHidden = false;
     }
   };

@@ -8,19 +8,20 @@
     "main"
     "footer";
   grid-template-rows: var(--header-height) min-content 1fr var(--footer-height);
+  grid-template-columns: minmax(300px, 1fr);
   background-color: var(--cultured);
 
   min-height: 100vh;
   min-width: 300px;
 }
 
-@include tablets {
+@include tablet {
   .container {
     grid-template-areas:
       "header main"
       "sidebar main"
       "sidebar footer";
-    grid-template-columns: var(--sidebar-width) 1fr;
+    grid-template-columns: var(--sidebar-width) minmax(300px, 1fr);
     grid-template-rows: var(--header-height) 1fr var(--footer-height);
   }
 }

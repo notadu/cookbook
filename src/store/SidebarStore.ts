@@ -1,11 +1,11 @@
 import { action, computed, observable } from "mobx";
-import { MIN_TABLET_WIDTH } from "../constants/common";
+import { TABLET_WIDTH } from "../constants/common";
 
 class SidebarStore {
   @observable private _isSidebarHidden = true;
 
   constructor() {
-    this._isSidebarHidden = window.innerWidth < MIN_TABLET_WIDTH;
+    this._isSidebarHidden = window.innerWidth < TABLET_WIDTH;
   }
 
   @action.bound
