@@ -45,6 +45,9 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
         this.store.recipes = [...this.store.recipes, ...results];
         this.store.offset = offset;
         this.store.totalRecipesNumber = totalResults;
+        if (!results.length) {
+          this.store.errorMessage = "No recipes found";
+        }
       })
       .catch((error) => {
         notificationStore.notifications.set(uuid(), error.message);
@@ -66,6 +69,8 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
       prevProps.location.pathname !== this.props.location.pathname ||
       prevProps.location.search !== this.props.location.search
     ) {
+      this.store.recipes = [];
+      this.store.errorMessage = "";
       this.loadRecipes();
     }
   }

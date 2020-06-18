@@ -32,7 +32,8 @@ class Sidebar extends React.Component<RouteComponentProps> {
   componentDidUpdate(prevProps: Readonly<RouteComponentProps>) {
     if (
       sidebarStore.isSidebarOpened &&
-      this.props.location.pathname !== prevProps.location.pathname
+      (prevProps.location.pathname !== this.props.location.pathname ||
+        prevProps.location.search !== this.props.location.search)
     ) {
       this.closeSidebar();
     }
