@@ -160,6 +160,7 @@ class SearchCombobox extends React.Component {
             <SearchIcon />
           </button>
           <input
+            type="search"
             ref={this.searchInputRef}
             value={this.query}
             className="search_input"
