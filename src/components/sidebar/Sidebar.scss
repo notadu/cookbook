@@ -1,21 +1,50 @@
 @import "src/styles/mixins";
 
 .cook-sidebar {
-  grid-area: sidebar;
-  height: 200px;
-  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: var(--sidebar-width);
+  height: 100%;
+  transition: left 0.5s ease;
+  z-index: 3;
   background-color: var(--cultured);
-  padding: 0 10px;
-  transition: height 0.5s ease;
+  padding: 50px 20px;
 
-  &.cook-sidebar__hidden {
-    height: 0;
+  &.cook-sidebar__opened {
+    left: 0;
   }
+}
+
+.cook-sidebar_close-button {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+
+.cook-sidebar_overlay {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 @include tablet {
   .cook-sidebar {
+    left: initial;
+    position: relative;
+    height: initial;
     padding: 0 20px;
-    height: auto;
+    grid-area: sidebar;
+  }
+
+  .cook-sidebar_close-button {
+    display: none;
   }
 }

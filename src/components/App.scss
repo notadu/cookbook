@@ -4,10 +4,9 @@
   display: grid;
   grid-template-areas:
     "header"
-    "sidebar"
     "main"
     "footer";
-  grid-template-rows: var(--header-height) min-content 1fr var(--footer-height);
+  grid-template-rows: var(--header-height) 1fr var(--footer-height);
   grid-template-columns: minmax(300px, 1fr);
   background-color: var(--cultured);
 
@@ -23,10 +22,5 @@
       "sidebar footer";
     grid-template-columns: var(--sidebar-width) minmax(300px, 1fr);
     grid-template-rows: var(--header-height) 1fr var(--footer-height);
-  }
-}
-
-@include screen__small {
-  .container {
   }
 }

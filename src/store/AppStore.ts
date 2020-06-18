@@ -3,17 +3,21 @@ import { FAVORITE_RECIPES_KEY } from "../constants/common";
 
 class AppStore {
   @observable isLoading = false;
+  @observable isTouchDevice = false;
   @observable favoriteRecipes: Set<number> = new Set<number>();
 
-  // constructor() {
-  //   const favoriteRecipes = localStorage.getItem(FAVORITE_RECIPES_KEY);
-  //   if (favoriteRecipes) {
-  //     const favoriteRecipesArr: number[] = favoriteRecipes
-  //       .split(",")
-  //       .map((id) => parseInt(id));
-  //     this.favoriteRecipes = new Set<number>(favoriteRecipesArr);
-  //   }
-  // }
+  constructor() {
+    // const favoriteRecipes = localStorage.getItem(FAVORITE_RECIPES_KEY);
+    // if (favoriteRecipes) {
+    //   const favoriteRecipesArr: number[] = favoriteRecipes
+    //     .split(",")
+    //     .map((id) => parseInt(id));
+    //   this.favoriteRecipes = new Set<number>(favoriteRecipesArr);
+    // }
+    if ("ontouchstart" in window) {
+      this.isTouchDevice = true;
+    }
+  }
 
   @action
   toggleFavoriteRecipe(id: number) {

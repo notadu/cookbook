@@ -1,25 +1,11 @@
-import { action, computed, observable } from "mobx";
-import { TABLET_WIDTH } from "../constants/common";
+import { action, observable } from "mobx";
 
 class SidebarStore {
-  @observable private _isSidebarHidden = true;
-
-  constructor() {
-    this._isSidebarHidden = window.innerWidth < TABLET_WIDTH;
-  }
+  @observable isSidebarOpened = false;
 
   @action.bound
   toggleSidebar() {
-    this._isSidebarHidden = !this._isSidebarHidden;
-  }
-
-  @computed
-  get isSidebarHidden() {
-    return this._isSidebarHidden;
-  }
-
-  set isSidebarHidden(value: boolean) {
-    this._isSidebarHidden = value;
+    this.isSidebarOpened = !this.isSidebarOpened;
   }
 }
 

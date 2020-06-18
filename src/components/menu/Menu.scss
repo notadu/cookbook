@@ -1,5 +1,9 @@
 @import "src/styles/mixins";
 
+nav {
+  text-align: center;
+}
+
 .menu-list {
   padding-left: 0;
 }
@@ -19,10 +23,6 @@
 }
 
 @include tablet {
-  nav {
-    text-align: center;
-  }
-
   .menu-list {
     margin: 50px 0;
   }
