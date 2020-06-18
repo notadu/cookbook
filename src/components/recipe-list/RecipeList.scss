@@ -29,6 +29,17 @@
 .recipe-list_button,
 .recipe-list_preloader {
   margin-top: 20px;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 20px;
+    width: 20px;
+    height: 20px;
+    fill: var(--color-primary);
+    animation: 2s linear infinite svg-animation;
+  }
 }
 
 .recipe-list_button {
@@ -42,5 +53,15 @@
   &:hover,
   &:focus {
     box-shadow: 0 7px 14px 0 rgba(151, 160, 204, 0.4);
+  }
+}
+
+@keyframes svg-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

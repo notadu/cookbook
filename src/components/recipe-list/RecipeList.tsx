@@ -7,6 +7,7 @@ import { computed } from "mobx";
 import RecipeCard from "../recipe-card/RecipeCard";
 import { IRecipeShortInfo } from "../../models/IRecipe";
 import { RECIPE_PAGE_URL } from "../../constants/routes";
+import { ReactComponent as LoaderIcon } from "../../assets/icons/refresh.svg";
 
 import "./RecipeList.scss";
 
@@ -47,7 +48,10 @@ class RecipeList extends React.Component<IRecipeListProps> {
 
     return (
       isLoading && (
-        <div className="recipe-list_preloader">Loading recipes...</div>
+        <div className="recipe-list_preloader">
+          <LoaderIcon />
+          <span>Loading recipes...</span>
+        </div>
       )
     );
   }
