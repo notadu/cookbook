@@ -26,9 +26,9 @@ const Menu = () => (
       <li className="menu-item">
         <NavLink to={RECIPES_DESSERTS_PAGE_URL}>Desserts</NavLink>
       </li>
-      <li className="menu-item menu-item__with-margin">
-        <NavLink to={FAVORITE_RECIPES_PAGE_URL}>Favorite recipes</NavLink>
-      </li>
+      {/*<li className="menu-item menu-item__with-margin">*/}
+      {/*  <NavLink to={FAVORITE_RECIPES_PAGE_URL}>Favorite recipes</NavLink>*/}
+      {/*</li>*/}
     </ul>
   </nav>
 );

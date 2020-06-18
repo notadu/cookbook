@@ -37,10 +37,10 @@ const RecipeCard: React.FunctionComponent<IRecipeItemProps> = observer(
             <TimerIcon />
             <span>{readyInMinutes} min</span>
           </div>
-          <FavoriteBadge
-            isChecked={appStore.favoriteRecipes.has(id)}
-            onToggle={() => appStore.toggleFavoriteRecipe(id)}
-          />
+          {/*<FavoriteBadge*/}
+          {/*  isChecked={appStore.favoriteRecipes.has(id)}*/}
+          {/*  onToggle={() => appStore.toggleFavoriteRecipe(id)}*/}
+          {/*/>*/}
         </div>
       </div>
     );

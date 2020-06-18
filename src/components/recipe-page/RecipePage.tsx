@@ -54,10 +54,10 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
       <section className="recipe-page">
         {this.recipe && (
           <article className="recipe">
-            <FavoriteBadge
-              isChecked={appStore.favoriteRecipes.has(this.recipe.id)}
-              onToggle={() => appStore.toggleFavoriteRecipe(this.recipe!.id)}
-            />
+            {/*<FavoriteBadge*/}
+            {/*  isChecked={appStore.favoriteRecipes.has(this.recipe.id)}*/}
+            {/*  onToggle={() => appStore.toggleFavoriteRecipe(this.recipe!.id)}*/}
+            {/*/>*/}
             <h2 className="recipe_title">{this.recipe.title}</h2>
             <div className="recipe_image">
               <Image src={this.recipe.image} alt={this.recipe.title} />
