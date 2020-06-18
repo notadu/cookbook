@@ -14,7 +14,13 @@ nav {
   a {
     color: var(--color-primary);
     display: block;
-    padding: 5px 0;
+    padding: 1rem 0;
+    text-transform: capitalize;
+
+    &.active {
+      color: var(--color-secondary);
+      font-weight: 700;
+    }
   }
 
   &.menu-item__with-margin {
