@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import {
-  FAVORITE_RECIPES_PAGE_URL,
   RECIPES_DESSERTS_PAGE_URL,
   RECIPES_ITALIAN_CUISINE_PAGE_URL,
   RECIPES_SALADS_PAGE_URL,
@@ -26,6 +25,9 @@ const Menu = () => (
       <li className="menu-item">
         <NavLink to={RECIPES_DESSERTS_PAGE_URL}>Desserts</NavLink>
       </li>
+
+      {/*Disable favorite recipe functionality*/}
+
       {/*<li className="menu-item menu-item__with-margin">*/}
       {/*  <NavLink to={FAVORITE_RECIPES_PAGE_URL}>Favorite recipes</NavLink>*/}
       {/*</li>*/}

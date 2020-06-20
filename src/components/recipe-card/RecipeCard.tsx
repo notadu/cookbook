@@ -3,8 +3,6 @@ import { observer } from "mobx-react";
 
 import { IRecipeShortInfo } from "../../models/IRecipe";
 import Image from "../image/Image";
-import FavoriteBadge from "../favorite-badge/FavoriteBadge";
-import appStore from "../../store/AppStore";
 import { ReactComponent as ViewIcon } from "../../assets/icons/view.svg";
 import { ReactComponent as TimerIcon } from "../../assets/icons/timer.svg";
 
@@ -37,6 +35,9 @@ const RecipeCard: React.FunctionComponent<IRecipeItemProps> = observer(
             <TimerIcon />
             <span>{readyInMinutes} min</span>
           </div>
+
+          {/* Disable favorite recipe functionality */}
+
           {/*<FavoriteBadge*/}
           {/*  isChecked={appStore.favoriteRecipes.has(id)}*/}
           {/*  onToggle={() => appStore.toggleFavoriteRecipe(id)}*/}

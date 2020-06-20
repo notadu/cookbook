@@ -7,13 +7,16 @@ class AppStore {
   @observable favoriteRecipes: Set<number> = new Set<number>();
 
   constructor() {
-    // const favoriteRecipes = localStorage.getItem(FAVORITE_RECIPES_KEY);
-    // if (favoriteRecipes) {
-    //   const favoriteRecipesArr: number[] = favoriteRecipes
-    //     .split(",")
-    //     .map((id) => parseInt(id));
-    //   this.favoriteRecipes = new Set<number>(favoriteRecipesArr);
-    // }
+    /* Disable favorite recipe functionality
+
+    const favoriteRecipes = localStorage.getItem(FAVORITE_RECIPES_KEY);
+    if (favoriteRecipes) {
+      const favoriteRecipesArr: number[] = favoriteRecipes
+        .split(",")
+        .map((id) => parseInt(id));
+      this.favoriteRecipes = new Set<number>(favoriteRecipesArr);
+    } */
+
     if ("ontouchstart" in window) {
       this.isTouchDevice = true;
     }
