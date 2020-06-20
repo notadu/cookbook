@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
 
 import App from "./components/App";
+import ScrollToTop from "./components/scroll-to-top/ScrollToTop";
 import history from "./history";
 import * as serviceWorker from "./serviceWorker";
 
@@ -10,7 +11,9 @@ import "./styles/index.scss";
 
 ReactDOM.render(
   <Router history={history}>
-    <App />
+    <ScrollToTop>
+      <App />
+    </ScrollToTop>
   </Router>,
   document.getElementById("root")
 );
