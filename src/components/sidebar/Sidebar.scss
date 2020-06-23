@@ -11,8 +11,20 @@
   background-color: var(--cultured);
   padding: 50px 20px;
 
+  .cook-sidebar_close-button,
+  .search,
+  nav {
+    display: none;
+  }
+
   &.cook-sidebar__opened {
     left: 0;
+
+    .cook-sidebar_close-button,
+    .search,
+    nav {
+      display: block;
+    }
   }
 }
 
@@ -22,7 +34,12 @@
   height: 50px;
   position: absolute;
   right: 0;
-  top: 0px;
+  top: 0;
+
+  &:focus,
+  &:hover {
+    color: var(--color-link-primary--hover);
+  }
 }
 
 .cook-sidebar_overlay {
@@ -37,11 +54,17 @@
 
 @include tablet {
   .cook-sidebar {
-    left: initial;
     position: relative;
-    height: initial;
+    left: auto;
+    top: auto;
+    height: auto;
     padding: 0 20px;
     grid-area: sidebar;
+
+    .search,
+    nav {
+      display: block;
+    }
   }
 
   .cook-sidebar_close-button {

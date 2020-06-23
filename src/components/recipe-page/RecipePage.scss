@@ -19,7 +19,7 @@
     "ingredients"
     "instructions";
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto 300px auto auto auto;
+  grid-template-rows: repeat(2, auto) 300px repeat(3, auto);
   grid-gap: 20px;
 
   .favorite-badge {
@@ -91,8 +91,8 @@
       "ingredients ingredients"
       "instructions instructions";
 
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 300px auto auto auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 300px repeat(3, auto);
     padding: 50px;
     font-size: 16px;
 

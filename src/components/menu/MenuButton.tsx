@@ -10,7 +10,11 @@ import "./MenuButton.scss";
 class MenuButton extends React.Component {
   render() {
     return (
-      <button className="menu-button" onClick={menuStore.toggleSidebar}>
+      <button
+        aria-expanded={menuStore.isSidebarOpened}
+        className="menu-button"
+        onClick={menuStore.toggleSidebar}
+      >
         <MenuIcon />
       </button>
     );
