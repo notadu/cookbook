@@ -1,9 +1,10 @@
 import { action, observable } from "mobx";
-import { FAVORITE_RECIPES_KEY } from "../constants/common";
+import { FAVORITE_RECIPES_KEY, TABLET_WIDTH } from "../constants/common";
 
 class AppStore {
   @observable isLoading = false;
   @observable isTouchDevice = false;
+  @observable isMobileWidth = false;
   @observable favoriteRecipes: Set<number> = new Set<number>();
 
   constructor() {
@@ -17,9 +18,18 @@ class AppStore {
       this.favoriteRecipes = new Set<number>(favoriteRecipesArr);
     } */
 
-    if ("ontouchstart" in window) {
-      this.isTouchDevice = true;
-    }
+    this.initIsTouchDevice();
+    this.initIsMobileWidth();
+  }
+
+  @action
+  initIsMobileWidth() {
+    this.isMobileWidth = window.innerWidth < TABLET_WIDTH;
+  }
+
+  @action
+  initIsTouchDevice() {
+    this.isTouchDevice = "ontouchstart" in window;
   }
 
   @action

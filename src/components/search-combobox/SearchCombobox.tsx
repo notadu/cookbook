@@ -3,7 +3,6 @@ import { observer } from "mobx-react";
 import classNames from "classnames";
 import { v4 as uuid } from "uuid";
 import debounce from "lodash.debounce";
-import { action, observable } from "mobx";
 
 import RecipesApi from "../../api/RecipesApi";
 import { IRecipeSearchResult } from "../../models/IRecipe";
@@ -12,6 +11,7 @@ import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 import { RECIPE_PAGE_URL, RECIPES_PAGE_URL } from "../../constants/routes";
 import history from "../../history";
 import notificationStore from "../../store/NotificationStore";
+import searchStore from "../../store/SearchStore";
 
 import {
   ARROW_DOWN_KEY,
@@ -27,11 +27,6 @@ class SearchCombobox extends React.Component {
   searchRef = React.createRef<HTMLDivElement>();
   number = 5;
 
-  @observable private query = "";
-  @observable private suggestions: IRecipeSearchResult[] = [];
-  @observable showSuggestions = false;
-  @observable activeSuggestionIndex: number | undefined;
-
   constructor(props: {}) {
     super(props);
     this.loadSearchResults = debounce(this.loadSearchResults.bind(this), 1000);
@@ -45,110 +40,103 @@ class SearchCombobox extends React.Component {
     document.removeEventListener("click", this.handleClickOutside);
   }
 
-  @action
   clearSearchInput = () => {
-    this.query = "";
-    this.suggestions = [];
-    this.activeSuggestionIndex = undefined;
+    searchStore.clearSearchInput();
     this.searchInputRef.current?.focus();
   };
 
-  @action
   loadSearchResults = () => {
     const queryParams = {
       number: this.number,
-      query: this.query,
+      query: searchStore.query,
     };
 
     RecipesApi.getAutocompleteSearchResults(queryParams)
-      .then((searchResults) => (this.suggestions = searchResults))
+      .then((searchResults) => (searchStore.suggestions = searchResults))
       .catch((error) =>
         notificationStore.notifications.set(uuid(), error.message)
       );
   };
 
-  @action
   handleClickOutside = (e: any) => {
-    if (this.showSuggestions) {
+    if (searchStore.showSuggestions) {
       const isOutside = !this.searchRef.current?.contains(e.target);
       if (isOutside) {
-        this.showSuggestions = false;
-        this.activeSuggestionIndex = undefined;
+        searchStore.showSuggestions = false;
+        searchStore.activeSuggestionIndex = undefined;
       }
     }
   };
 
-  @action
   handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.persist();
 
-    this.query = e.target.value;
+    searchStore.query = e.target.value;
 
-    if (this.query.trim()) {
+    if (searchStore.query.trim()) {
       this.loadSearchResults();
     }
   };
 
-  @action
   handleSuggestionClick = (item: IRecipeSearchResult) => {
-    this.query = item.title;
-    this.suggestions = new Array(item);
-    this.showSuggestions = false;
+    searchStore.query = item.title;
+    searchStore.suggestions = new Array(item);
+    searchStore.showSuggestions = false;
   };
 
-  @action
   handleKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
       case ESCAPE_KEY:
-        this.query = this.query.trim();
-        this.showSuggestions = false;
+        searchStore.query = searchStore.query.trim();
+        searchStore.showSuggestions = false;
         this.searchInputRef.current?.blur();
         break;
       case ARROW_UP_KEY:
-        if (this.activeSuggestionIndex !== undefined) {
-          this.activeSuggestionIndex =
-            this.activeSuggestionIndex === 0
-              ? this.suggestions.length - 1
-              : this.activeSuggestionIndex - 1;
+        if (searchStore.activeSuggestionIndex !== undefined) {
+          searchStore.activeSuggestionIndex =
+            searchStore.activeSuggestionIndex === 0
+              ? searchStore.suggestions.length - 1
+              : searchStore.activeSuggestionIndex - 1;
         } else {
-          this.activeSuggestionIndex = this.suggestions.length - 1;
+          searchStore.activeSuggestionIndex =
+            searchStore.suggestions.length - 1;
         }
         break;
       case ARROW_DOWN_KEY:
-        if (this.activeSuggestionIndex !== undefined) {
-          this.activeSuggestionIndex =
-            this.activeSuggestionIndex === this.suggestions.length - 1
+        if (searchStore.activeSuggestionIndex !== undefined) {
+          searchStore.activeSuggestionIndex =
+            searchStore.activeSuggestionIndex ===
+            searchStore.suggestions.length - 1
               ? 0
-              : this.activeSuggestionIndex + 1;
+              : searchStore.activeSuggestionIndex + 1;
         } else {
-          this.activeSuggestionIndex = 0;
+          searchStore.activeSuggestionIndex = 0;
         }
     }
   };
 
-  @action
   handleInputFocus = () => {
-    this.showSuggestions = true;
+    searchStore.showSuggestions = true;
   };
 
-  @action
   handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    this.query = this.query.trim();
+    searchStore.query = searchStore.query.trim();
 
-    if (this.query) {
-      if (this.activeSuggestionIndex !== undefined) {
-        const selectedRecipe = this.suggestions[this.activeSuggestionIndex];
-        this.activeSuggestionIndex = undefined;
-        this.query = selectedRecipe.title;
-        this.suggestions = new Array(selectedRecipe);
+    if (searchStore.query) {
+      if (searchStore.activeSuggestionIndex !== undefined) {
+        const selectedRecipe =
+          searchStore.suggestions[searchStore.activeSuggestionIndex];
+        searchStore.activeSuggestionIndex = undefined;
+        searchStore.query = selectedRecipe.title;
+        searchStore.suggestions = new Array(selectedRecipe);
         history.push(`${RECIPE_PAGE_URL}/${selectedRecipe.id}`);
       } else {
-        history.push(`${RECIPES_PAGE_URL}/?search=${this.query}`);
+        history.push(`${RECIPES_PAGE_URL}/?search=${searchStore.query}`);
       }
       this.searchInputRef.current?.blur();
-      this.showSuggestions = false;
+      searchStore.showSuggestions = false;
     }
   };
 
@@ -162,7 +150,7 @@ class SearchCombobox extends React.Component {
           <input
             type="search"
             ref={this.searchInputRef}
-            value={this.query}
+            value={searchStore.query}
             className="search_input"
             onChange={this.handleInputChange}
             onKeyDown={this.handleKeyDown}
@@ -174,16 +162,16 @@ class SearchCombobox extends React.Component {
             value="Clear search"
             className={classNames(
               "search_button",
-              !this.query && "search_button__hidden"
+              !searchStore.query && "search_button__hidden"
             )}
           >
             &times;
           </button>
         </form>
-        {this.showSuggestions && !!this.suggestions.length && (
+        {searchStore.showSuggestions && !!searchStore.suggestions.length && (
           <SearchSuggestions
-            suggestions={this.suggestions}
-            activeSuggestionIndex={this.activeSuggestionIndex}
+            suggestions={searchStore.suggestions}
+            activeSuggestionIndex={searchStore.activeSuggestionIndex}
             onClick={this.handleSuggestionClick}
           />
         )}

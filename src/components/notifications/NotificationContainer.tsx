@@ -19,7 +19,7 @@ class NotificationContainer extends React.Component {
     return (
       <TransitionGroup className="notification-container">
         {Array.from(notificationStore.notifications.keys()).map((key) => (
-          <CSSTransition key={key} timeout={500} classNames="slide-fade">
+          <CSSTransition key={key} timeout={500} classNames="slide-right">
             <Notification
               message={notificationStore.notifications.get(key)}
               onClose={() => this.handleClick(key)}

@@ -11,7 +11,8 @@ class MenuButton extends React.Component {
   render() {
     return (
       <button
-        aria-expanded={menuStore.isSidebarOpened}
+        aria-expanded={menuStore.isMobileSidebarOpened}
+        aria-label="Open main navigation"
         className="menu-button"
         onClick={menuStore.toggleSidebar}
       >

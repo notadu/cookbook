@@ -1,11 +1,11 @@
 import { action, observable } from "mobx";
 
 class SidebarStore {
-  @observable isSidebarOpened = false;
+  @observable isMobileSidebarOpened = false;
 
   @action.bound
   toggleSidebar() {
-    this.isSidebarOpened = !this.isSidebarOpened;
+    this.isMobileSidebarOpened = !this.isMobileSidebarOpened;
   }
 }
 

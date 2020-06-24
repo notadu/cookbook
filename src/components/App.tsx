@@ -7,17 +7,30 @@ import Main from "./main/Main";
 import NotificationContainer from "./notifications/NotificationContainer";
 import Loader from "./loader/Loader";
 import Sidebar from "./sidebar/Sidebar";
+import MobileSidebar from "./sidebar/MobileSidebar";
 import appStore from "../store/AppStore";
 
 import "./App.scss";
 
 @observer
 class App extends React.Component {
+  componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  }
+
+  handleResize = () => {
+    appStore.initIsMobileWidth();
+  };
+
   render() {
     return (
       <div className="container">
         <Header />
-        <Sidebar />
+        {appStore.isMobileWidth ? <MobileSidebar /> : <Sidebar />}
         <Main />
         <Footer />
         <NotificationContainer />
