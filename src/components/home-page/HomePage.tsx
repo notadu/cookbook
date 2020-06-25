@@ -16,6 +16,7 @@ import "./HomePage.scss";
 @observer
 class HomePage extends React.Component {
   @observable recipes: IRecipe[] = [];
+  @observable errorMessage = "";
   number = 10;
 
   @action
@@ -23,9 +24,10 @@ class HomePage extends React.Component {
     appStore.isLoading = true;
     RecipesApi.getRandomRecipes({ number: this.number })
       .then((recipes) => (this.recipes = [...recipes]))
-      .catch((error) =>
-        notificationStore.notifications.set(uuid(), error.message)
-      )
+      .catch((error) => {
+        notificationStore.notifications.set(uuid(), error.message);
+        this.errorMessage = "No popular recipes data";
+      })
       .finally(() => (appStore.isLoading = false));
   };
 
@@ -43,12 +45,11 @@ class HomePage extends React.Component {
             <figcaption>&mdash; M.F.K. Fisher</figcaption>
           </figure>
         </section>
-        {!!this.recipes.length && (
-          <section className="popular-recipes">
-            <h2>Popular recipes</h2>
-            <RecipeSlider recipes={this.recipes} />
-          </section>
-        )}
+        <section className="popular-recipes">
+          <h2>Popular recipes</h2>
+          {!!this.recipes.length && <RecipeSlider recipes={this.recipes} />}
+          {this.errorMessage && <div>No popular recipes data</div>}
+        </section>
       </section>
     );
   }

@@ -55,6 +55,8 @@ class RecipesPage extends React.Component<IRecipesProps & RouteComponentProps> {
           this.store.errorMessage = `
           Sorry, but number of API calls for free developer plan to 
           Spoonacular is reached. Please, use or test the app tomorrow!`;
+        } else {
+          this.store.errorMessage = "No recipes data";
         }
       })
       .finally(() => (this.store.isLoading = false));

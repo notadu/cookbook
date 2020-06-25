@@ -24,6 +24,7 @@ interface IMatchParams {
 @observer
 class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
   @observable recipe: IRecipe | undefined;
+  @observable errorMessage = "";
 
   componentDidMount() {
     const { match } = this.props;
@@ -36,6 +37,7 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
     const { match } = this.props;
     const { match: prevMatch } = prevProps;
     if (match.params.id !== prevMatch.params.id) {
+      this.errorMessage = "";
       this.getRecipeInfo(match.params.id);
     }
   }
@@ -44,13 +46,17 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
     appStore.isLoading = true;
     RecipesApi.getRecipeInfo(recipeId)
       .then((data) => (this.recipe = data))
-      .catch((e) => notificationStore.notifications.set(uuid(), e.message))
+      .catch((e) => {
+        this.errorMessage = "No recipe data";
+        notificationStore.notifications.set(uuid(), e.message);
+      })
       .finally(() => (appStore.isLoading = false));
   };
 
   render() {
     return (
       <section className="recipe-page">
+        {!!this.errorMessage && <div>{this.errorMessage}</div>}
         {this.recipe && (
           <article className="recipe">
             {/* Disable favorite recipe functionality */}
