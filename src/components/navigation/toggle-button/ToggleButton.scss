@@ -1,6 +1,6 @@
-@import "src/styles/mixins";
+@import "../../../styles/mixins";
 
-.menu-button {
+.toggle-button {
   position: absolute;
   left: 10px;
   border: 2px solid transparent;
@@ -16,7 +16,7 @@
 }
 
 @include tablet {
-  .menu-button {
+  .toggle-button {
     display: none;
   }
 }

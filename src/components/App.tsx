@@ -6,8 +6,6 @@ import Footer from "./footer/Footer";
 import Main from "./main/Main";
 import NotificationContainer from "./notifications/NotificationContainer";
 import Loader from "./loader/Loader";
-import Sidebar from "./sidebar/Sidebar";
-import MobileSidebar from "./sidebar/MobileSidebar";
 import appStore from "../store/AppStore";
 
 import "./App.scss";
@@ -30,7 +28,6 @@ class App extends React.Component {
     return (
       <div className="container">
         <Header />
-        {appStore.isMobileWidth ? <MobileSidebar /> : <Sidebar />}
         <Main />
         <Footer />
         <NotificationContainer />

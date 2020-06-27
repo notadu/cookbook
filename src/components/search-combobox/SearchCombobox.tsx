@@ -40,7 +40,7 @@ class SearchCombobox extends React.Component {
     document.removeEventListener("click", this.handleClickOutside);
   }
 
-  clearSearchInput = () => {
+  handleClearSearch = () => {
     searchStore.clearSearchInput();
     this.searchInputRef.current?.focus();
   };
@@ -87,9 +87,7 @@ class SearchCombobox extends React.Component {
   handleKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
       case ESCAPE_KEY:
-        searchStore.query = searchStore.query.trim();
-        searchStore.showSuggestions = false;
-        this.searchInputRef.current?.blur();
+        searchStore.clearSearchInput();
         break;
       case ARROW_UP_KEY:
         if (searchStore.activeSuggestionIndex !== undefined) {
@@ -157,7 +155,7 @@ class SearchCombobox extends React.Component {
             onFocus={this.handleInputFocus}
           />
           <button
-            onClick={this.clearSearchInput}
+            onClick={this.handleClearSearch}
             type="button"
             value="Clear search"
             className={classNames(

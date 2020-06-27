@@ -54,61 +54,50 @@ class RecipePage extends React.Component<RouteComponentProps<IMatchParams>> {
   };
 
   render() {
-    return (
-      <section className="recipe-page">
-        {!!this.errorMessage && <div>{this.errorMessage}</div>}
-        {this.recipe && (
-          <article className="recipe">
-            {/* Disable favorite recipe functionality */}
+    return this.recipe ? (
+      <article className="recipe">
+        {/* Disable favorite recipe functionality */}
 
-            {/*<FavoriteBadge*/}
-            {/*  isChecked={appStore.favoriteRecipes.has(this.recipe.id)}*/}
-            {/*  onToggle={() => appStore.toggleFavoriteRecipe(this.recipe!.id)}*/}
-            {/*/>*/}
+        {/*<FavoriteBadge*/}
+        {/*  isChecked={appStore.favoriteRecipes.has(this.recipe.id)}*/}
+        {/*  onToggle={() => appStore.toggleFavoriteRecipe(this.recipe!.id)}*/}
+        {/*/>*/}
 
-            <h2 className="recipe_title">{this.recipe.title}</h2>
-            <div className="recipe_image">
-              <Image src={this.recipe.image} alt={this.recipe.title} />
-            </div>
-            <div className="recipe_meta-info">
-              <Label className="recipe_cook-time">
-                <TimerIcon />
-                <span>{this.recipe.readyInMinutes} min</span>
-              </Label>
-              {this.recipe.veryHealthy && (
-                <Label color="blue">Very healthy</Label>
-              )}
-              {this.recipe.veryPopular && (
-                <Label color="red">Very popular</Label>
-              )}
-              {this.recipe.glutenFree && (
-                <Label color="green">Gluten free</Label>
-              )}
-            </div>
+        <h2 className="recipe_title">{this.recipe.title}</h2>
+        <div className="recipe_image">
+          <Image src={this.recipe.image} alt={this.recipe.title} />
+        </div>
+        <div className="recipe_meta-info">
+          <Label className="recipe_cook-time">
+            <TimerIcon />
+            <span>{this.recipe.readyInMinutes} min</span>
+          </Label>
+          {this.recipe.veryHealthy && <Label color="blue">Very healthy</Label>}
+          {this.recipe.veryPopular && <Label color="red">Very popular</Label>}
+          {this.recipe.glutenFree && <Label color="green">Gluten free</Label>}
+        </div>
+        <div
+          className="recipe_summary"
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(this.recipe.summary),
+          }}
+        />
+        {this.recipe.instructions && (
+          <div className="recipe_instructions">
+            <h3>Instructions</h3>
             <div
-              className="recipe_summary"
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(this.recipe.summary),
+                __html: DOMPurify.sanitize(this.recipe.instructions),
               }}
             />
-            {this.recipe.instructions && (
-              <div className="recipe_instructions">
-                <h3>Instructions</h3>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(this.recipe.instructions),
-                  }}
-                />
-              </div>
-            )}
-            {!!this.recipe.extendedIngredients.length && (
-              <RecipeIngredients
-                ingredients={this.recipe.extendedIngredients}
-              />
-            )}
-          </article>
+          </div>
         )}
-      </section>
+        {!!this.recipe.extendedIngredients.length && (
+          <RecipeIngredients ingredients={this.recipe.extendedIngredients} />
+        )}
+      </article>
+    ) : (
+      <div>{this.errorMessage}</div>
     );
   }
 }

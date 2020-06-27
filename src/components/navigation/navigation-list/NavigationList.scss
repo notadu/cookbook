@@ -1,14 +1,12 @@
-@import "src/styles/mixins";
+@import "../../../styles/mixins";
 
-nav {
+.navigation-list {
   text-align: center;
-}
-
-.menu-list {
   padding-left: 0;
+  margin: 0;
 }
 
-.menu-item {
+.navigation-item {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 
   a {
@@ -23,22 +21,18 @@ nav {
     }
   }
 
-  &.menu-item__with-margin {
+  &.navigation_item__with-margin {
     margin-top: 10px;
   }
 }
 
 @include tablet {
-  .menu-list {
-    margin: 50px 0;
-  }
-
-  .menu-item {
+  .navigation-item {
     a {
       font-size: 1.5rem;
     }
 
-    &.menu-item__with-margin {
+    &.navigation-item__with-margin {
       margin-top: 20px;
     }
   }

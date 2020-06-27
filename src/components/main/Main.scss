@@ -1,4 +1,13 @@
+@import "src/styles/mixins";
+
 .cook-content {
-  grid-area: main;
-  padding: 1.5rem;
+  flex-grow: 1;
+  padding: calc(var(--header-height) + var(--default-padding))
+    var(--default-padding) var(--default-padding);
+}
+
+@include tablet {
+  .cook-content {
+    padding-top: var(--default-padding);
+  }
 }

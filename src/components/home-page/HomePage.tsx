@@ -37,7 +37,7 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <section className="home-page">
+      <div className="home-page">
         <section className="home-page_hero">
           <Image src={heroImage} alt="Blueberries on the plate" />
           <figure>
@@ -50,7 +50,7 @@ class HomePage extends React.Component {
           {!!this.recipes.length && <RecipeSlider recipes={this.recipes} />}
           {this.errorMessage && <div>No popular recipes data</div>}
         </section>
-      </section>
+      </div>
     );
   }
 }

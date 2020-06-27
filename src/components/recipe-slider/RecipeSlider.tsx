@@ -9,7 +9,7 @@ import {
   LARGE_DESKTOP_WIDTH,
   MEDIUM_DESKTOP_WIDTH,
   MOBILE_WIDTH,
-  TABLET_WIDTH,
+  SMALL_DESKTOP_WIDTH,
 } from "../../constants/common";
 
 import "./RecipeSlider.scss";
@@ -42,7 +42,7 @@ const SLIDER_SETTINGS: Settings = {
       },
     },
     {
-      breakpoint: TABLET_WIDTH,
+      breakpoint: SMALL_DESKTOP_WIDTH,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 1,

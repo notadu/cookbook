@@ -7,7 +7,7 @@ class SearchStore {
   @observable showSuggestions = false;
   @observable activeSuggestionIndex: number | undefined;
 
-  @action.bound
+  @action
   clearSearchInput() {
     this.query = "";
     this.suggestions = [];

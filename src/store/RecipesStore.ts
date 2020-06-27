@@ -9,7 +9,7 @@ class RecipesStore {
   @observable isLoading = false;
   @observable errorMessage = "";
 
-  @action.bound
+  @action
   increaseOffset() {
     this.offset += this.recipesNumberPerPage;
   }

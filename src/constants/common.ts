@@ -5,6 +5,7 @@ export const ARROW_DOWN_KEY = "ArrowDown";
 
 export const LARGE_DESKTOP_WIDTH = 1440;
 export const MEDIUM_DESKTOP_WIDTH = 1280;
+export const SMALL_DESKTOP_WIDTH = 1024;
 export const TABLET_WIDTH = 768;
 export const MOBILE_WIDTH = 600;
 
