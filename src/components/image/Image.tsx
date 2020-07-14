@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
-import { observer } from "mobx-react";
-import { observable } from "mobx";
 
 import "./Image.scss";
 
@@ -10,23 +8,15 @@ interface IHeroImageProps {
   alt: string;
 }
 
-@observer
-class Image extends React.Component<IHeroImageProps> {
-  @observable isLoading = true;
+const Image: React.FunctionComponent<IHeroImageProps> = ({ src, alt }) => {
+  const [isLoading, setIsLoading] = useState(true);
 
-  onLoad = () => {
-    this.isLoading = false;
-  };
-
-  render() {
-    const { src, alt } = this.props;
-    return (
-      <div className={classNames("image", this.isLoading && "image__loading")}>
-        <img src={src} alt={alt} onLoad={this.onLoad} />
-        <div className="image_preview" />
-      </div>
-    );
-  }
-}
+  return (
+    <div className={classNames("image", isLoading && "image__loading")}>
+      <img src={src} alt={alt} onLoad={() => setIsLoading(false)} />
+      <div className="image_preview" />
+    </div>
+  );
+};
 
 export default Image;
