@@ -11,7 +11,7 @@ const RANDOM_RECIPES_URL = "/recipes/random";
 const SEARCH_RECIPES_URL = "/recipes/search";
 const AUTOCOMPLETE_SEARCH_URL = "/recipes/autocomplete";
 const SEARCH_RECIPE_INFO_URL_PATTERN = "/recipes/{id}/information";
-const RECIPES_IFO_BULK_URL = "/recipes/informationBulk?ids=";
+const RECIPES_INFO_BULK_URL = "/recipes/informationBulk?ids=";
 
 interface ISearchRecipesResponse {
   baseUri: string;
@@ -56,7 +56,7 @@ class RecipesApi {
   }
 
   getRecipesInfo(ids: number[]): Promise<IRecipe[]> {
-    const recipeInfoBulkUrl = `${RECIPES_IFO_BULK_URL}${ids}`;
+    const recipeInfoBulkUrl = `${RECIPES_INFO_BULK_URL}${ids}`;
     return Api.get(recipeInfoBulkUrl, {
       headers: {
         "x-api-key": process.env.REACT_APP_SPOONACULAR_API_KEY ?? "",
