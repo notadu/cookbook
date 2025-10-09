@@ -48,6 +48,7 @@ class HomePage extends React.Component {
         <section className="popular-recipes">
           <h2>Popular recipes</h2>
           {!!this.recipes.length && <RecipeSlider recipes={this.recipes} />}
+          {!this.recipes.length && <div>No recipies found</div>}
           {this.errorMessage && <div>No popular recipes data</div>}
         </section>
       </div>
