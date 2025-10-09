@@ -26,36 +26,53 @@ interface ISearchRecipesResponse {
 
 class RecipesApi {
   getRecipes(params?: IQueryParams): Promise<ISearchRecipesResponse> {
-    return Api.get(SEARCH_RECIPES_URL, { params }).then(
-      (response) => response.data
-    );
+    return Api.get(SEARCH_RECIPES_URL, {
+      headers: {
+        "x-api-key": process.env.REACT_APP_SPOONACULAR_API_KEY ?? "",
+      },
+      params,
+    }).then((response) => response.data);
   }
 
   getRandomRecipes(params?: IQueryParams): Promise<IRecipe[]> {
-    return Api.get(RANDOM_RECIPES_URL, { params }).then(
-      (response: AxiosResponse<{ recipes: IRecipe[] }>) => {
-        const { data } = response;
-        return data.recipes;
-      }
-    );
+    return Api.get(RANDOM_RECIPES_URL, {
+      headers: {
+        "x-api-key": process.env.REACT_APP_SPOONACULAR_API_KEY ?? "",
+      },
+      params,
+    }).then((response: AxiosResponse<{ recipes: IRecipe[] }>) => {
+      const { data } = response;
+      return data.recipes;
+    });
   }
 
   getRecipeInfo(id: string): Promise<IRecipe> {
     const recipeInfoUrl = SEARCH_RECIPE_INFO_URL_PATTERN.replace("{id}", id);
-    return Api.get(recipeInfoUrl).then((response) => response.data);
+    return Api.get(recipeInfoUrl, {
+      headers: {
+        "x-api-key": process.env.REACT_APP_SPOONACULAR_API_KEY ?? "",
+      },
+    }).then((response) => response.data);
   }
 
   getRecipesInfo(ids: number[]): Promise<IRecipe[]> {
     const recipeInfoBulkUrl = `${RECIPES_IFO_BULK_URL}${ids}`;
-    return Api.get(recipeInfoBulkUrl).then((response) => response.data);
+    return Api.get(recipeInfoBulkUrl, {
+      headers: {
+        "x-api-key": process.env.REACT_APP_SPOONACULAR_API_KEY ?? "",
+      },
+    }).then((response) => response.data);
   }
 
   getAutocompleteSearchResults(
     params: IQueryParams
   ): Promise<IRecipeSearchResult[]> {
-    return Api.get(AUTOCOMPLETE_SEARCH_URL, { params }).then(
-      (response) => response.data
-    );
+    return Api.get(AUTOCOMPLETE_SEARCH_URL, {
+      params,
+      headers: {
+        "x-api-key": process.env.REACT_APP_SPOONACULAR_API_KEY ?? "",
+      },
+    }).then((response) => response.data);
   }
 }
 

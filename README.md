@@ -1,12 +1,10 @@
-# Link to dev version :point_right: [Heroku](https://cook-recipes.herokuapp.com/)
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `set "REACT_APP_API_KEY={your_spoonacular_api_key}" && npm start`
+### `set "REACT_APP_SPOONACULAR_API_KEY={your_spoonacular_api_key}" && npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
